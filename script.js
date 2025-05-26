@@ -1,30 +1,47 @@
-// script.js - 完全版
+// script.js - テーマ切り替えアイコン対応版
 document.addEventListener('DOMContentLoaded', function() {
     // --- Theme Switcher ---
     const themeToggleButton = document.getElementById('theme-toggle-button');
+    const themeIcon = document.getElementById('theme-icon'); // アイコン要素を取得
+
+    // テーマに基づいてアイコンを更新する関数
+    function updateThemeIcon(theme) { // theme は 'light' または 'dark'
+        if (themeIcon) {
+            if (theme === 'dark') {
+                themeIcon.className = 'fa-solid fa-moon'; // ダークモード時は月のアイコン
+            } else {
+                themeIcon.className = 'fa-solid fa-sun';  // ライトモード時は太陽のアイコン
+            }
+        }
+    }
+    
+    // 初期テーマ設定
     const storedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
+    let currentActiveTheme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
     
-    document.documentElement.setAttribute('data-theme', initialTheme);
+    document.documentElement.setAttribute('data-theme', currentActiveTheme);
+    updateThemeIcon(currentActiveTheme); // 初期アイコンを設定
 
     if (themeToggleButton) {
         themeToggleButton.addEventListener('click', function() {
+            // 現在のテーマを取得し、新しいテーマに切り替え
             let newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme); // 切り替え後のテーマでアイコンを更新
         });
     }
 
-    // --- Footer Year ---
+    // --- Footer Year (変更なし) ---
     const currentYearElement = document.getElementById('current-year');
     if (currentYearElement) {
         currentYearElement.textContent = new Date().getFullYear();
     }
 
-    // --- Load Site Update Info ---
+    // --- Load Site Update Info (変更なし) ---
     const pageLastUpdatedElement = document.getElementById('page-last-updated');
-    const updateInfoJsonPath = './update-info.json'; // Actionsで生成されるファイルへのパス
+    const updateInfoJsonPath = './update-info.json'; 
 
     fetch(updateInfoJsonPath)
         .then(response => {
@@ -51,12 +68,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-    // --- Load Profile Data ---
+    // --- Load Profile Data (変更なし) ---
     const profileAvatarElement = document.getElementById('profile-avatar');
     const profileNameElement = document.getElementById('profile-name-display');
     const profileBioElement = document.getElementById('profile-bio-display');
     const footerProfileNameElement = document.getElementById('footer-profile-name');
-    const profileDataJsonPath = './profile-data.json'; // Actionsで生成されるファイルへのパス
+    const profileDataJsonPath = './profile-data.json'; 
 
     fetch(profileDataJsonPath)
         .then(response => {
@@ -91,9 +108,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (profileBioElement) profileBioElement.textContent = 'GitHubプロフィールの読み込みに失敗しました。';
         });
 
-    // --- Tools List ---
+    // --- Tools List (変更なし) ---
     const toolsListContainer = document.getElementById('tools-list-container');
-    const toolsJsonPath = '/Tools/tools-list.json'; // ToolsリポジトリのJSONへのパス
+    const toolsJsonPath = '/Tools/tools-list.json'; 
 
     const dummyToolsData = [
         { name: "プレースホルダーツール１ (ローカル)", url: "#", description: "これはJavaScriptで表示されているダミーのツール情報です。実際のデータは tools-list.json から読み込まれます。", lastUpdated: "2025-01-01" },
@@ -124,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ul.appendChild(li);
         });
         
-        toolsListContainer.innerHTML = ''; // 「読み込み中...」メッセージをクリア
+        toolsListContainer.innerHTML = '';
         toolsListContainer.appendChild(ul);
     }
 
@@ -141,12 +158,12 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 console.warn('Received data is not a valid array for tools. Displaying dummy data instead.', data);
                 toolsListContainer.innerHTML = '<p>ツール情報の形式が正しくありません。ダミーデータを表示します。</p>';
-                displayTools(dummyToolsData); // ダミーデータを表示
+                displayTools(dummyToolsData);
             }
         })
         .catch(error => {
             console.error('Error loading tools from tools-list.json:', error);
             toolsListContainer.innerHTML = `<p>ツールの読み込みに失敗しました (${error.message})。代わりにダミーデータを表示します。</p>`;
-            displayTools(dummyToolsData); // エラー時はダミーデータを表示
+            displayTools(dummyToolsData);
         });
 });
