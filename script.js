@@ -1,48 +1,78 @@
-// script.js - プロフィール情報読み込み部分を削除/コメントアウト
+// script.js - 改訂版 (ツールリストローダー機能は tools-loader.js に分離)
 document.addEventListener('DOMContentLoaded', function() {
-    // --- Theme Switcher (変更なし) ---
-    // ... (以前のコード) ...
+    // --- Theme Switcher ---
+    const themeToggleButton = document.getElementById('theme-toggle-button');
+    const themeIcon = document.getElementById('theme-icon'); 
 
-    // --- Footer Year (変更なし) ---
-    // ... (以前のコード) ...
+    function updateThemeIcon(theme) { 
+        if (themeIcon) {
+            if (theme === 'dark') {
+                themeIcon.className = 'fa-solid fa-moon'; 
+            } else {
+                themeIcon.className = 'fa-solid fa-sun';  
+            }
+        }
+    }
+    
+    const storedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let currentActiveTheme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
+    
+    document.documentElement.setAttribute('data-theme', currentActiveTheme);
+    updateThemeIcon(currentActiveTheme);
 
-    // --- Load Site Update Info (変更なし) ---
-    // ... (以前のコード) ...
+    if (themeToggleButton) {
+        themeToggleButton.addEventListener('click', function() {
+            let newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme); 
+        });
+    }
 
-    // --- Load Profile Data ---
-    // このセクションは、HTMLがActionsによって事前生成されるため、
-    // クライアントサイドで再度DOMを書き換える必要は基本的になくなります。
-    // もし何らかの理由でクライアントサイドでもデータを扱いたい場合は残しても良いですが、
-    // 表示のためだけであればコメントアウトまたは削除します。
-    /*
-    const profileAvatarElement = document.getElementById('profile-avatar');
-    const profileNameElement = document.getElementById('profile-name-display');
-    const profileBioElement = document.getElementById('profile-bio-display');
-    const footerProfileNameElement = document.getElementById('footer-profile-name');
-    const profileDataJsonPath = './profile-data.json'; 
+    // --- Footer Year ---
+    const currentYearElement = document.getElementById('current-year');
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
 
-    fetch(profileDataJsonPath)
+    // --- Load Site Update Info ---
+    const pageLastUpdatedElement = document.getElementById('page-last-updated');
+    const updateInfoJsonPath = './update-info.json'; // Actionsで生成されるファイルへのパス
+
+    fetch(updateInfoJsonPath)
         .then(response => {
-            if (!response.ok) throw new Error(`Failed to fetch ${profileDataJsonPath}. Status: ${response.status}`);
+            if (!response.ok) throw new Error(`Failed to fetch ${updateInfoJsonPath}. Status: ${response.status}`);
             return response.json();
         })
         .then(data => {
-            if (data.error) {
-                console.error('Error in profile-data.json from GitHub Actions:', data.error);
-                // エラー時の処理 (HTMLにはフォールバック値が埋め込まれている想定)
-                return;
+            if (pageLastUpdatedElement && data.lastUpdated) {
+                const lastUpdatedDate = new Date(data.lastUpdated);
+                const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' };
+                try {
+                    pageLastUpdatedElement.textContent = lastUpdatedDate.toLocaleString(undefined, options);
+                } catch (e) { 
+                    pageLastUpdatedElement.textContent = lastUpdatedDate.toISOString().substring(0, 16).replace('T', ' ');
+                }
+            } else if (pageLastUpdatedElement) {
+                pageLastUpdatedElement.textContent = '更新日情報なし';
             }
-            // HTMLに既に埋め込まれているので、通常は不要
-            // if (profileAvatarElement && data.avatarUrl) profileAvatarElement.src = data.avatarUrl;
-            // if (profileNameElement && data.name) profileNameElement.textContent = data.name;
-            // if (footerProfileNameElement && data.name) footerProfileNameElement.textContent = data.name;
-            // if (profileBioElement && data.bio) profileBioElement.innerHTML = data.bio.replace(/\n/g, '<br>');
         })
         .catch(error => {
-            console.error('Error loading profile-data.json (client-side, should be pre-filled):', error);
+            console.error('Error loading update-info.json:', error);
+            if (pageLastUpdatedElement) {
+                pageLastUpdatedElement.textContent = '更新日取得失敗';
+            }
+        });
+
+    // --- Load Profile Data (HTMLに事前生成されるため、クライアントサイドでのDOM操作は不要) ---
+    /*
+    const profileAvatarElement = document.getElementById('profile-avatar');
+    // ... (以前コメントアウトしたプロフィールデータ読み込み処理はそのままコメントアウト) ...
+    fetch(profileDataJsonPath)
+        // ...
+        .catch(error => {
+            // ...
         });
     */
-    
-    // --- Tools List (変更なし) ---
-    // ... (以前のコード) ...
 });
