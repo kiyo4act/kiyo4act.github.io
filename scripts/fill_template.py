@@ -23,11 +23,10 @@ def main():
             profile_data = json.load(f)
     except FileNotFoundError:
         print(f"Warning: {profile_data_file} not found. Using default fallback data.")
-        # フォールバック用の最小限のデータ
         profile_data = {
             'name': 'あなたの名前/活動名',
             'bio': 'あなたの活動を紹介するページです。',
-            'avatarUrl': f'{SITE_URL.rstrip("/")}/images/profile.jpg' # デフォルトのプロフィール画像パス
+            'avatarUrl': f'{SITE_URL.rstrip("/")}/images/profile.jpg' 
         }
     except json.JSONDecodeError:
         print(f"Warning: Failed to decode {profile_data_file}. Using default fallback data.")
@@ -37,7 +36,6 @@ def main():
             'avatarUrl': f'{SITE_URL.rstrip("/")}/images/profile.jpg'
         }
 
-    # テンプレートファイルを読み込む
     try:
         with open(template_file, 'r', encoding='utf-8') as f:
             template_content = f.read()
@@ -45,28 +43,22 @@ def main():
         print(f"Error: Template file {template_file} not found. Cannot generate index.html.")
         return
 
-    # プレースホルダーに設定する値を準備
-    profile_name = html.escape(profile_data.get('name', 'あなたのリンク集')) # HTMLエスケープ
+    profile_name = html.escape(profile_data.get('name', 'あなたのリンク集')) 
     profile_bio_raw = profile_data.get('bio', 'あなたの活動を紹介するページです。')
     
-    # meta description用にbioを調整 (例: 最初の120文字程度、改行除去)
     meta_description_text = html.escape(profile_bio_raw.replace('\n', ' ').strip()[:120] + "...") if profile_bio_raw else 'あなたの活動を紹介するページです。'
-    
-    # プロフィールbio表示用に改行を<br>に変換し、HTMLエスケープ
     profile_bio_html = html.escape(profile_bio_raw).replace('\n', '<br>\n')
 
-
-    # OGP画像はアバターがあればそれを使い、なければデフォルト画像
     og_image_url = profile_data.get('avatarUrl') if profile_data.get('avatarUrl') else OG_IMAGE_DEFAULT_URL
-    # プロフィール画像も同様
     profile_avatar_url = profile_data.get('avatarUrl') if profile_data.get('avatarUrl') else f'{SITE_URL.rstrip("/")}/images/profile.jpg'
 
+    page_title_text = f"{profile_name} | リンク集" # HTMLタイトルとOGPタイトル共通で使用
 
     replacements = {
-        "{{ PAGE_TITLE }}": f"{profile_name} | リンク集", # ページタイトル
+        "{{ PAGE_TITLE }}": page_title_text,
         "{{ META_DESCRIPTION }}": meta_description_text,
-        "{{ OG_TITLE }}": f"{profile_name} | Link Collection", # OGPタイトル (英語併記なども検討可)
-        "{{ OG_DESCRIPTION }}": meta_description_text, # OGP説明
+        "{{ OG_TITLE }}": page_title_text, # ★★★ 日本語に統一 ★★★
+        "{{ OG_DESCRIPTION }}": meta_description_text, 
         "{{ SITE_URL }}": SITE_URL,
         "{{ OG_IMAGE_URL }}": og_image_url,
         "{{ PROFILE_AVATAR_URL }}": profile_avatar_url,
@@ -76,7 +68,6 @@ def main():
 
     output_content = template_content
     for placeholder, value in replacements.items():
-        # valueがNoneの場合は空文字で置換 (HTMLエスケープは各値準備時に行う)
         output_content = output_content.replace(placeholder, value if value is not None else '')
 
     with open(output_file, 'w', encoding='utf-8') as f:
