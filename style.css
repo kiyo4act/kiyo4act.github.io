@@ -1,40 +1,55 @@
-/* style.css - カラーテーマ調整版 */
+/* style.css - 特筆リンク集・Discord・トースト通知スタイル追加版 */
 :root {
-    /* ライトモード調整: 全体的に少し落ち着いた色合いに */
-    --primary-bg-color: #f4f6f8;        /* 変更: 以前 #f0f2f5 */
-    --secondary-bg-color: #ffffff;     /* 変更なし (純粋な白を維持、または #fdfdfd のようなごく薄いグレーも可) */
-    --primary-text-color: #1c1e21;      /* 変更なし */
-    --secondary-text-color: #5a5f66;    /* 変更: 以前 #606770 (わずかに濃くして読みやすく) */
-    --link-color: #1877f2;              /* 変更なし */
-    --button-bg-color: #e9ebee;         /* 変更: 以前 #e7f3ff (より落ち着いたグレー系に) */
-    --button-text-color: #1877f2;       /* 変更なし */
-    --button-hover-bg-color: #dfe3e7;   /* 変更: 以前 #dcebff */
-    --border-color: #d0d7de;            /* 変更: 以前 #dddfe2 (GitHubのボーダーに近い色) */
-    --tool-item-bg-color: #f6f8fa;      /* 変更: 以前 #f7f7f7 */
-    --tool-item-border-color: #d8dee4;  /* 変更: 以前 #e0e0e0 */
-    --tool-link-color: #0969da;         /* 変更: 以前 #0d6efd (GitHubのリンク色に近い) */
-    --box-shadow-light: rgba(0, 0, 0, 0.07); /* 変更: 影を少し薄く */
-    --box-shadow-strong: rgba(0, 0, 0, 0.07);/* 変更: 影を少し薄く */
+    /* ... (カラーパレットは変更なし、前回の調整版を使用) ... */
+    --primary-bg-color: #f4f6f8;
+    --secondary-bg-color: #ffffff;
+    --primary-text-color: #1c1e21;
+    --secondary-text-color: #5a5f66;
+    --link-color: #1877f2;
+    --button-bg-color: #e9ebee;
+    --button-text-color: #1877f2; /* SNSボタンなどのテキスト色 */
+    --button-hover-bg-color: #dfe3e7;
+    --border-color: #d0d7de;
+    --tool-item-bg-color: #f6f8fa;
+    --tool-item-border-color: #d8dee4;
+    --tool-link-color: #0969da;
+    --box-shadow-light: rgba(0, 0, 0, 0.07);
+    --box-shadow-strong: rgba(0, 0, 0, 0.07);
+    /* 特筆リンク集用カラー (調整可能) */
+    --featured-item-bg-color: #ffffff;
+    --featured-item-border-color: var(--border-color);
+    --featured-item-hover-bg-color: #f6f8fa;
+    --featured-item-icon-color: var(--primary-text-color); /* アイコンの色 */
+    --featured-item-title-color: var(--primary-text-color);
+    --featured-item-description-color: var(--secondary-text-color);
 }
 
 [data-theme="dark"] {
-    /* ダークモード調整: 背景とコンテンツのコントラストを少し上げる */
-    --primary-bg-color: #0d1117;        /* 変更: 以前 #18191a (GitHubダークモードに近い暗さ) */
-    --secondary-bg-color: #161b22;     /* 変更: 以前 #242526 (GitHubダークモードのコンテンツ背景に近い) */
-    --primary-text-color: #c9d1d9;      /* 変更: 以前 #e4e6eb (GitHubダークのテキスト色に近い) */
-    --secondary-text-color: #8b949e;    /* 変更: 以前 #b0b3b8 (GitHubダークの補助テキストに近い) */
-    --link-color: #58a6ff;              /* 変更: 以前 #4599ff (GitHubダークのリンク色に近い) */
-    --button-bg-color: #21262d;         /* 変更: 以前 #3a3b3c (GitHubダークのボタン背景に近い) */
-    --button-text-color: #c9d1d9;       /* 変更: 以前 #e4e6eb */
-    --button-hover-bg-color: #30363d;   /* 変更: 以前 #4f5051 */
-    --border-color: #30363d;            /* 変更: 以前 #3e4042 (GitHubダークのボーダーに近い) */
-    --tool-item-bg-color: #1c2128;      /* 変更: 以前 #303132 */
-    --tool-item-border-color: #30363d;  /* 変更: 以前 #404142 */
-    --tool-link-color: #58a6ff;         /* 変更: 以前 #60afff */
-    --box-shadow-light: rgba(200, 200, 200, 0.05); /* 変更: 影の色を調整 */
-    --box-shadow-strong: rgba(200, 200, 200, 0.05);/* 変更: 影の色を調整 */
+    /* ... (ダークモードのカラーパレットは変更なし、前回の調整版を使用) ... */
+    --primary-bg-color: #0d1117;
+    --secondary-bg-color: #161b22;
+    --primary-text-color: #c9d1d9;
+    --secondary-text-color: #8b949e;
+    --link-color: #58a6ff;
+    --button-bg-color: #21262d;
+    --button-text-color: #c9d1d9; /* SNSボタンなどのテキスト色 */
+    --button-hover-bg-color: #30363d;
+    --border-color: #30363d;
+    --tool-item-bg-color: #1c2128;
+    --tool-item-border-color: #30363d;
+    --tool-link-color: #58a6ff;
+    --box-shadow-light: rgba(200, 200, 200, 0.05);
+    --box-shadow-strong: rgba(200, 200, 200, 0.05);
+    /* 特筆リンク集用カラー (ダークモード) */
+    --featured-item-bg-color: #21262d; /* ボタン背景に近い色 */
+    --featured-item-border-color: var(--border-color);
+    --featured-item-hover-bg-color: #30363d; /* ボタンホバー背景に近い色 */
+    --featured-item-icon-color: var(--primary-text-color);
+    --featured-item-title-color: var(--primary-text-color);
+    --featured-item-description-color: var(--secondary-text-color);
 }
 
+/* ... (body, .container, テーマスイッチャー, プロフィールセクションなどのスタイルは変更なし、前回のものを参照) ... */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
@@ -49,7 +64,6 @@ body {
     box-sizing: border-box;
     transition: background-color 0.3s, color 0.3s;
 }
-
 .container {
     width: 100%;
     max-width: 680px;
@@ -61,185 +75,194 @@ body {
     box-sizing: border-box;
     transition: background-color 0.3s;
 }
-
-/* Theme switcher button container */
-.theme-switcher-container {
-    text-align: right;
-    margin-bottom: 10px;
-}
-
+.theme-switcher-container { text-align: right; margin-bottom: 10px; }
 #theme-toggle-button {
-    background-color: var(--button-bg-color);
-    color: var(--button-text-color);
-    border: 1px solid var(--border-color);
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.9em;
+    background-color: var(--button-bg-color); color: var(--button-text-color); border: 1px solid var(--border-color);
+    padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 0.9em;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
-#theme-toggle-button:hover {
-    background-color: var(--button-hover-bg-color);
-}
-#theme-toggle-button i { /* アイコンのサイズ調整 */
-    font-size: 1.2em; 
-    vertical-align: middle; /* アイコンの垂直位置調整 */
-}
+#theme-toggle-button:hover { background-color: var(--button-hover-bg-color); }
+#theme-toggle-button i { font-size: 1.2em; vertical-align: middle; }
 
-
-/* Profile Section */
 .profile-section {
-    text-align: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 20px;
+    text-align: center; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); margin-bottom: 20px;
 }
-
 .profile-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 15px;
-    border: 3px solid var(--secondary-bg-color);
-    box-shadow: 0 0 10px var(--box-shadow-light);
+    width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px;
+    border: 3px solid var(--secondary-bg-color); box-shadow: 0 0 10px var(--box-shadow-light);
 }
+.profile-name { font-size: 1.8em; font-weight: 600; margin: 0 0 10px 0; color: var(--primary-text-color); }
+.profile-bio { font-size: 0.95em; color: var(--secondary-text-color); margin-bottom: 20px; padding: 0 15px; }
 
-.profile-name {
-    font-size: 1.8em;
-    font-weight: 600;
-    margin: 0 0 10px 0;
-    color: var(--primary-text-color);
-}
-
-.profile-bio {
-    font-size: 0.95em;
-    color: var(--secondary-text-color);
-    margin-bottom: 20px;
-    padding: 0 15px;
-}
-
+/* SNSリンク集 */
 .social-links {
     margin-top: 10px;
+    display: flex; /* 横並びのため */
+    flex-wrap: wrap; /* 折り返しのため */
+    justify-content: center; /* 中央揃え */
 }
-
-/* General Button Style */
-.button-style {
+.social-link.button-style,
+span.social-link.button-style { /* Discordのspanも対象に */
     display: inline-flex; 
     align-items: center; 
     justify-content: center; 
     background-color: var(--button-bg-color);
-    color: var(--button-text-color);
-    padding: 10px 20px;
-    margin: 5px;
+    color: var(--button-text-color); /* テキスト色を明示 */
+    padding: 8px 12px; /* 少し小さめに調整 */
+    margin: 4px; /* 間隔調整 */
     border-radius: 6px;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.9em;
-    border: 1px solid var(--border-color); /* ボタンにも薄く枠線を追加 */
+    font-size: 0.85em; /* 少し小さめに調整 */
+    border: 1px solid var(--border-color);
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
-.social-links .button-style {
-    padding: 10px 15px;
-}
-
-.button-style:hover {
+.social-link.button-style:hover,
+span.social-link.button-style:hover {
     background-color: var(--button-hover-bg-color);
-    /* border-color: var(--link-color); */ /* ホバー時の枠線はメインのボーダー色に合わせるか、リンク色にするか */
 }
-
-/* Font Awesome icon specific styling in buttons */
-.button-style i.fa-brands,
-.button-style i.fa-solid {
-    margin-right: 8px; 
-    font-size: 1.1em;  
+.social-link i { /* SNSリンク内のアイコン共通スタイル */
+    margin-right: 6px; 
+    font-size: 1.2em; /* アイコンサイズをテキストに合わせる */
     width: 1.2em; 
     text-align: center;
 }
+/* Discordボタンのカーソル */
+span#discord-copy-trigger.social-link.button-style {
+    cursor: pointer;
+}
 
 
-/* Sections */
+/* セクション共通 */
 main section {
     margin-bottom: 30px;
 }
-
 main section h2 {
-    font-size: 1.5em;
-    font-weight: 600;
-    color: var(--primary-text-color);
-    margin-bottom: 15px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border-color);
+    font-size: 1.5em; font-weight: 600; color: var(--primary-text-color);
+    margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);
 }
 
-/* Tools List Specific Styles */
-#tools-list-container ul {
-    list-style: none;
-    padding: 0;
-}
 
-.tool-item {
-    background-color: var(--tool-item-bg-color);
-    border: 1px solid var(--tool-item-border-color);
-    padding: 15px;
-    margin-bottom: 12px;
+/* 特筆リンク集セクション */
+.featured-links-section h2 {
+    /* 必要であれば特筆リンク集のタイトルスタイルを個別に調整 */
+}
+.featured-items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* レスポンシブなカラム */
+    gap: 15px; /* アイテム間の隙間 */
+}
+.featured-item {
+    background-color: var(--featured-item-bg-color);
+    border: 1px solid var(--featured-item-border-color);
     border-radius: 8px;
-    box-shadow: 0 1px 2px var(--box-shadow-light);
+    box-shadow: 0 1px 3px var(--box-shadow-light);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.featured-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px var(--box-shadow-strong);
+}
+.featured-item-link {
+    display: flex; /* アイコンとコンテンツを横並び */
+    padding: 15px;
+    text-decoration: none;
+    color: inherit; /* 親要素の色を継承 */
+    height: 100%; /* 親の高さに合わせる */
+    box-sizing: border-box;
+}
+.featured-item-icon-container {
+    flex-shrink: 0;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.featured-item-icon {
+    font-size: 1.8em; /* アイコンサイズ */
+    color: var(--featured-item-icon-color); /* アイコンの色 */
+    width: 30px; /* アイコンの幅を固定してレイアウトを安定させる */
+    text-align: center;
+}
+.featured-item-content {
+    flex-grow: 1;
+}
+.featured-item-title {
+    font-size: 1.1em; /* タイトルサイズ */
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: var(--featured-item-title-color);
+}
+.featured-item-description {
+    font-size: 0.85em; /* 詳細文サイズ */
+    color: var(--featured-item-description-color);
+    margin-bottom: 0;
+    line-height: 1.4;
+}
+
+
+/* ... (ツールリスト、その他リンク、フッターのスタイルは変更なし、前回のものを参照) ... */
+#tools-list-container ul { list-style: none; padding: 0; }
+.tool-item {
+    background-color: var(--tool-item-bg-color); border: 1px solid var(--tool-item-border-color);
+    padding: 15px; margin-bottom: 12px; border-radius: 8px; box-shadow: 0 1px 2px var(--box-shadow-light);
     transition: background-color 0.3s, border-color 0.3s;
 }
+.tool-item h3 { margin-top: 0; margin-bottom: 8px; font-size: 1.2em; }
+.tool-item h3 a { text-decoration: none; color: var(--tool-link-color); font-weight: 500; }
+.tool-item h3 a:hover { text-decoration: underline; }
+.tool-item p { margin-bottom: 5px; font-size: 0.9em; color: var(--secondary-text-color); }
+.tool-item .tool-meta { font-size: 0.8em; color: var(--secondary-text-color); }
+.loading-message { color: var(--secondary-text-color); text-align: center; padding: 20px; }
 
-.tool-item h3 {
-    margin-top: 0;
-    margin-bottom: 8px;
-    font-size: 1.2em;
-}
-
-.tool-item h3 a {
-    text-decoration: none;
-    color: var(--tool-link-color);
-    font-weight: 500;
-}
-
-.tool-item h3 a:hover {
-    text-decoration: underline;
-}
-
-.tool-item p {
-    margin-bottom: 5px;
-    font-size: 0.9em;
-    color: var(--secondary-text-color);
-}
-
-.tool-item .tool-meta {
-    font-size: 0.8em;
-    color: var(--secondary-text-color);
-}
-
-.loading-message {
-    color: var(--secondary-text-color);
-    text-align: center;
-    padding: 20px;
-}
-
-/* Other Links Section */
-.other-links-section ul {
-    list-style: none;
-    padding: 0;
-}
+.other-links-section ul { list-style: none; padding: 0; }
 .other-links-section li .button-style {
-    display: flex; 
-    text-align: left; 
-    justify-content: flex-start; 
-    margin-bottom: 10px;
+    display: flex; text-align: left; justify-content: flex-start; margin-bottom: 10px;
+}
+.other-links-section li .button-style i { /* 他のリンクにもアイコンを入れる場合の共通スタイル */
+    margin-right: 8px; font-size: 1.1em; width: 1.2em; text-align: center;
+}
+
+footer {
+    text-align: center; margin-top: 30px; padding-top: 20px;
+    border-top: 1px solid var(--border-color); font-size: 0.85em; color: var(--secondary-text-color);
 }
 
 
-/* Footer */
-footer {
-    text-align: center;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-color);
-    font-size: 0.85em;
-    color: var(--secondary-text-color);
+/* トースト通知のスタイル */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.toast-notification {
+    background-color: #333; /* ダークテーマのトースト */
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-size: 0.9em;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateY(20px);
+}
+.toast-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.toast-notification.hide {
+    opacity: 0;
+    transform: translateY(20px);
+}
+/* ライトモード時のトーストの色（任意） */
+[data-theme="light"] .toast-notification {
+    background-color: var(--primary-text-color); /* ライトモードの主要テキスト色を背景に */
+    color: var(--secondary-bg-color); /* ライトモードのコンテンツ背景色をテキストに */
 }
