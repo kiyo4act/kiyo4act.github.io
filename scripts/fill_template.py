@@ -5,8 +5,8 @@ import html # HTMLエスケープ用
 
 # データファイルのパス (ワークフローのルートからの相対パス)
 profile_data_file = 'profile-data.json' 
-# テンプレートファイルのパス
-template_file = 'index.template.html' 
+# テンプレートファイルのパス (変更点)
+template_file = '_templates/index.template.html' # ★★★ パスを修正 ★★★
 # 出力ファイル名
 output_file = 'index.html' 
 
@@ -36,6 +36,7 @@ def main():
             'avatarUrl': f'{SITE_URL.rstrip("/")}/images/profile.jpg'
         }
 
+    # テンプレートファイルを読み込む
     try:
         with open(template_file, 'r', encoding='utf-8') as f:
             template_content = f.read()
@@ -43,6 +44,7 @@ def main():
         print(f"Error: Template file {template_file} not found. Cannot generate index.html.")
         return
 
+    # プレースホルダーに設定する値を準備
     profile_name = html.escape(profile_data.get('name', 'あなたのリンク集')) 
     profile_bio_raw = profile_data.get('bio', 'あなたの活動を紹介するページです。')
     
@@ -52,12 +54,12 @@ def main():
     og_image_url = profile_data.get('avatarUrl') if profile_data.get('avatarUrl') else OG_IMAGE_DEFAULT_URL
     profile_avatar_url = profile_data.get('avatarUrl') if profile_data.get('avatarUrl') else f'{SITE_URL.rstrip("/")}/images/profile.jpg'
 
-    page_title_text = f"{profile_name} | リンク集" # HTMLタイトルとOGPタイトル共通で使用
+    page_title_text = f"{profile_name} | リンク集"
 
     replacements = {
         "{{ PAGE_TITLE }}": page_title_text,
         "{{ META_DESCRIPTION }}": meta_description_text,
-        "{{ OG_TITLE }}": page_title_text, # ★★★ 日本語に統一 ★★★
+        "{{ OG_TITLE }}": page_title_text,
         "{{ OG_DESCRIPTION }}": meta_description_text, 
         "{{ SITE_URL }}": SITE_URL,
         "{{ OG_IMAGE_URL }}": og_image_url,
