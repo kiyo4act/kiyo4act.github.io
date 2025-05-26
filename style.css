@@ -1,36 +1,38 @@
-/* style.css - Font Awesomeアイコン微調整版 */
+/* style.css - カラーテーマ調整版 */
 :root {
-    --primary-bg-color: #f0f2f5;
-    --secondary-bg-color: #ffffff;
-    --primary-text-color: #1c1e21;
-    --secondary-text-color: #606770;
-    --link-color: #1877f2;
-    --button-bg-color: #e7f3ff;
-    --button-text-color: #1877f2;
-    --button-hover-bg-color: #dcebff;
-    --border-color: #dddfe2;
-    --tool-item-bg-color: #f7f7f7;
-    --tool-item-border-color: #e0e0e0;
-    --tool-link-color: #0d6efd;
-    --box-shadow-light: rgba(0, 0, 0, 0.1);
-    --box-shadow-strong: rgba(0, 0, 0, 0.1);
+    /* ライトモード調整: 全体的に少し落ち着いた色合いに */
+    --primary-bg-color: #f4f6f8;        /* 変更: 以前 #f0f2f5 */
+    --secondary-bg-color: #ffffff;     /* 変更なし (純粋な白を維持、または #fdfdfd のようなごく薄いグレーも可) */
+    --primary-text-color: #1c1e21;      /* 変更なし */
+    --secondary-text-color: #5a5f66;    /* 変更: 以前 #606770 (わずかに濃くして読みやすく) */
+    --link-color: #1877f2;              /* 変更なし */
+    --button-bg-color: #e9ebee;         /* 変更: 以前 #e7f3ff (より落ち着いたグレー系に) */
+    --button-text-color: #1877f2;       /* 変更なし */
+    --button-hover-bg-color: #dfe3e7;   /* 変更: 以前 #dcebff */
+    --border-color: #d0d7de;            /* 変更: 以前 #dddfe2 (GitHubのボーダーに近い色) */
+    --tool-item-bg-color: #f6f8fa;      /* 変更: 以前 #f7f7f7 */
+    --tool-item-border-color: #d8dee4;  /* 変更: 以前 #e0e0e0 */
+    --tool-link-color: #0969da;         /* 変更: 以前 #0d6efd (GitHubのリンク色に近い) */
+    --box-shadow-light: rgba(0, 0, 0, 0.07); /* 変更: 影を少し薄く */
+    --box-shadow-strong: rgba(0, 0, 0, 0.07);/* 変更: 影を少し薄く */
 }
 
 [data-theme="dark"] {
-    --primary-bg-color: #18191a;
-    --secondary-bg-color: #242526;
-    --primary-text-color: #e4e6eb;
-    --secondary-text-color: #b0b3b8;
-    --link-color: #4599ff;
-    --button-bg-color: #3a3b3c;
-    --button-text-color: #e4e6eb;
-    --button-hover-bg-color: #4f5051;
-    --border-color: #3e4042;
-    --tool-item-bg-color: #303132;
-    --tool-item-border-color: #404142;
-    --tool-link-color: #60afff;
-    --box-shadow-light: rgba(255, 255, 255, 0.05);
-    --box-shadow-strong: rgba(255, 255, 255, 0.05);
+    /* ダークモード調整: 背景とコンテンツのコントラストを少し上げる */
+    --primary-bg-color: #0d1117;        /* 変更: 以前 #18191a (GitHubダークモードに近い暗さ) */
+    --secondary-bg-color: #161b22;     /* 変更: 以前 #242526 (GitHubダークモードのコンテンツ背景に近い) */
+    --primary-text-color: #c9d1d9;      /* 変更: 以前 #e4e6eb (GitHubダークのテキスト色に近い) */
+    --secondary-text-color: #8b949e;    /* 変更: 以前 #b0b3b8 (GitHubダークの補助テキストに近い) */
+    --link-color: #58a6ff;              /* 変更: 以前 #4599ff (GitHubダークのリンク色に近い) */
+    --button-bg-color: #21262d;         /* 変更: 以前 #3a3b3c (GitHubダークのボタン背景に近い) */
+    --button-text-color: #c9d1d9;       /* 変更: 以前 #e4e6eb */
+    --button-hover-bg-color: #30363d;   /* 変更: 以前 #4f5051 */
+    --border-color: #30363d;            /* 変更: 以前 #3e4042 (GitHubダークのボーダーに近い) */
+    --tool-item-bg-color: #1c2128;      /* 変更: 以前 #303132 */
+    --tool-item-border-color: #30363d;  /* 変更: 以前 #404142 */
+    --tool-link-color: #58a6ff;         /* 変更: 以前 #60afff */
+    --box-shadow-light: rgba(200, 200, 200, 0.05); /* 変更: 影の色を調整 */
+    --box-shadow-strong: rgba(200, 200, 200, 0.05);/* 変更: 影の色を調整 */
 }
 
 body {
@@ -76,10 +78,14 @@ body {
     font-size: 0.9em;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
-
 #theme-toggle-button:hover {
     background-color: var(--button-hover-bg-color);
 }
+#theme-toggle-button i { /* アイコンのサイズ調整 */
+    font-size: 1.2em; 
+    vertical-align: middle; /* アイコンの垂直位置調整 */
+}
+
 
 /* Profile Section */
 .profile-section {
@@ -119,9 +125,9 @@ body {
 
 /* General Button Style */
 .button-style {
-    display: inline-flex; /* アイコンとテキストを横並びにするため inline-flex に変更 */
-    align-items: center; /* アイコンとテキストを垂直方向中央揃え */
-    justify-content: center; /* ボタン内でコンテンツを中央揃え */
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
     background-color: var(--button-bg-color);
     color: var(--button-text-color);
     padding: 10px 20px;
@@ -130,7 +136,7 @@ body {
     text-decoration: none;
     font-weight: 500;
     font-size: 0.9em;
-    border: 1px solid transparent;
+    border: 1px solid var(--border-color); /* ボタンにも薄く枠線を追加 */
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 .social-links .button-style {
@@ -139,14 +145,16 @@ body {
 
 .button-style:hover {
     background-color: var(--button-hover-bg-color);
-    border-color: var(--link-color);
+    /* border-color: var(--link-color); */ /* ホバー時の枠線はメインのボーダー色に合わせるか、リンク色にするか */
 }
 
-/* Font Awesome icon specific styling */
-.button-style .fa-brands,
-.button-style .fa-solid { /* 他の種類のアイコンも使う場合 */
-    margin-right: 8px; /* アイコンとテキストの間に少しスペース */
-    font-size: 1.1em;  /* アイコンのサイズを少し大きく（お好みで調整） */
+/* Font Awesome icon specific styling in buttons */
+.button-style i.fa-brands,
+.button-style i.fa-solid {
+    margin-right: 8px; 
+    font-size: 1.1em;  
+    width: 1.2em; 
+    text-align: center;
 }
 
 
@@ -219,12 +227,11 @@ main section h2 {
     padding: 0;
 }
 .other-links-section li .button-style {
-    display: flex; /* inline-flexから変更し、ブロック要素のように振る舞いつつ内部はflex */
-    text-align: left; /* ボタン内のテキストは左寄せに（アイコンがあるので） */
-    justify-content: flex-start; /* コンテンツを左から配置 */
+    display: flex; 
+    text-align: left; 
+    justify-content: flex-start; 
     margin-bottom: 10px;
 }
-/* もし「その他リンク」にもアイコンを入れるなら、上記の.button-style .fa-brandsなどの指定が共通で効きます */
 
 
 /* Footer */
