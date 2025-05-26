@@ -38,23 +38,63 @@
             <img src="{{ PROFILE_AVATAR_URL }}" alt="{{ PROFILE_NAME }}のプロフィール画像" class="profile-image" id="profile-avatar">
             <h1 class="profile-name" id="profile-name-display">{{ PROFILE_NAME }}</h1>
             <p class="profile-bio" id="profile-bio-display">{{ PROFILE_BIO_HTML }}</p>
-            <div class="social-links">
-                <a href="https://x.com/kiyo4act/" target="_blank" rel="noopener noreferrer" class="social-link button-style">
-                    <i class="fa-brands fa-x-twitter"></i> X (旧Twitter)
+            
+            <div class="social-links" id="social-links-container">
+                <a href="https://x.com/kiyo4act/" target="_blank" rel="noopener noreferrer" class="social-link button-style" data-tooltip-id="@kiyo4act" aria-label="X (旧Twitter) @kiyo4act">
+                    <i class="fa-brands fa-x-twitter"></i> X
                 </a>
-                <a href="https://github.com/kiyo4act" target="_blank" rel="noopener noreferrer" class="social-link button-style">
-                    <i class="fa-brands fa-github"></i> GitHub
-                </a>
-                <a href="https://konoe.studio/" target="_blank" rel="noopener noreferrer" class="social-link button-style">
-                    <i class="fa-solid fa-file-lines"></i> ブログ 
-                </a>
-                <a href="https://www.youtube.com/@kiyo4vlog」です。" target="_blank" rel="noopener noreferrer" class="social-link button-style">
+                <a href="https://www.youtube.com/@kiyo4vlog」です。" target="_blank" rel="noopener noreferrer" class="social-link button-style" data-tooltip-id="@kiyo4vlog" aria-label="YouTube @kiyo4vlog">
                     <i class="fa-brands fa-youtube"></i> YouTube
+                </a>
+                <a href="#" class="social-link button-style discord-link" data-tooltip-id="@kiyo4act" data-copy-id="kiyo4act" aria-label="Discord ID @kiyo4act をコピー">
+                    <i class="fa-brands fa-discord"></i> Discord
+                </a>
+                <a href="https://github.com/kiyo4act" target="_blank" rel="noopener noreferrer" class="social-link button-style" data-tooltip-id="kiyo4act" aria-label="GitHub kiyo4act">
+                    <i class="fa-brands fa-github"></i> GitHub
                 </a>
             </div>
         </header>
 
         <main>
+            <section class="featured-links-section">
+                <h2>ピックアップ</h2>
+                <div class="featured-links-grid">
+                    <div class="featured-link-item">
+                        <a href="https://18konoe.booth.pm/" target="_blank" rel="noopener noreferrer" class="featured-link-anchor">
+                            <div class="featured-link-icon-wrapper">
+                                <i class="fa-solid fa-store"></i>
+                            </div>
+                            <div class="featured-link-content">
+                                <h3 class="featured-link-title">Boothショップ</h3>
+                                <p class="featured-link-description">VRChat向けアクセサリーなど販売中</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="featured-link-item">
+                        <a href="https://konoe.studio/" target="_blank" rel="noopener noreferrer" class="featured-link-anchor">
+                            <div class="featured-link-icon-wrapper">
+                                <i class="fa-solid fa-file-lines"></i>
+                            </div>
+                            <div class="featured-link-content">
+                                <h3 class="featured-link-title">ブログ</h3>
+                                <p class="featured-link-description">PC・SW・VR・ガジェット関連ブログ</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="featured-link-item">
+                        <a href="https://x.com/kiyo4act/articles" target="_blank" rel="noopener noreferrer" class="featured-link-anchor">
+                            <div class="featured-link-icon-wrapper">
+                                <i class="fa-solid fa-newspaper"></i>
+                            </div>
+                            <div class="featured-link-content">
+                                <h3 class="featured-link-title">X 記事</h3>
+                                <p class="featured-link-description">Tipsやまとめなどを記事にしています</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
             <section class="tools-section">
                 <h2>公開しているツール</h2>
                 <div id="tools-list-container">
@@ -73,9 +113,16 @@
 
         <footer>
             <p>最終更新日: <span id="page-last-updated">読み込み中...</span></p>
-            <p>&copy; <span id="current-year"></span> <span id="footer-profile-name">{{ PROFILE_NAME }}</span></p>
+            <p>© <span id="current-year"></span> <span id="footer-profile-name">{{ PROFILE_NAME }}</span></p>
         </footer>
     </div>
+
+    <div id="toast-notification" class="toast" aria-live="assertive" aria-atomic="true">
+        クリップボードにコピーしました！
+    </div>
+
+    <div id="tooltip" class="tooltip" role="tooltip"></div>
+
     <script src="script.js"></script>
     <script src="tools-loader.js"></script>
 </body>
