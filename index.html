@@ -21,7 +21,8 @@
 <body>
     <div class="container">
         <div class="theme-switcher-container">
-            <button id="theme-toggle-button">テーマ切り替え (☀️/🌙)</button>
+            <button id="theme-toggle-button" aria-label="テーマを切り替える">
+                <i id="theme-icon" class="fa-solid"></i> </button>
         </div>
 
         <header class="profile-section">
@@ -31,15 +32,16 @@
                 【ここにあなたの自己紹介文が入ります。趣味、スキル、関心のあること、現在取り組んでいることなどを自由に記述してください。LitLinkのようにもう少し短いキャッチフレーズでも良いでしょう。】
             </p>
             <div class="social-links">
-                <a href="【TwitterのURL】" target="_blank" rel="noopener noreferrer" class="social-link button-style">
+                <a href="https://x.com/kiyo4act/" target="_blank" rel="noopener noreferrer" class="social-link button-style">
                     <i class="fa-brands fa-x-twitter"></i> X (旧Twitter)
                 </a>
-                <a href="【GitHubのURL】" target="_blank" rel="noopener noreferrer" class="social-link button-style">
-                    <i class="fa-brands fa-github"></i> GitHub  </a>
-                <a href="【ブログや他のSNSのURL】" target="_blank" rel="noopener noreferrer" class="social-link button-style">
-                    ブログ 
+                <a href="https://github.com/kiyo4act" target="_blank" rel="noopener noreferrer" class="social-link button-style">
+                    <i class="fa-brands fa-github"></i> GitHub
                 </a>
-                </div>
+                <a href="https://konoe.studio/" target="_blank" rel="noopener noreferrer" class="social-link button-style">
+                    <i class="fa-solid fa-blog"></i> ブログ 
+                </a>
+            </div>
         </header>
 
         <main>
@@ -47,7 +49,7 @@
                 <h2>公開しているツール</h2>
                 <div id="tools-list-container">
                     <p class="loading-message">ツール一覧を読み込み中...</p>
-                    </div>
+                </div>
             </section>
 
             <section class="other-links-section">
@@ -55,7 +57,7 @@
                 <ul>
                     <li><a href="【その他の重要なリンク1のURL】" target="_blank" rel="noopener noreferrer" class="button-style">【リンク1のタイトル】</a></li>
                     <li><a href="【その他の重要なリンク2のURL】" target="_blank" rel="noopener noreferrer" class="button-style">【リンク2のタイトル】</a></li>
-                    </ul>
+                </ul>
             </section>
         </main>
 
