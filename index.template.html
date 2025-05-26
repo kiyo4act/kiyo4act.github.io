@@ -11,7 +11,8 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ SITE_URL }}">
     <meta property="og:image" content="{{ OG_IMAGE_URL }}">
-    <meta name="twitter:card" content="summary_large_image"> <meta name="twitter:title" content="{{ OG_TITLE }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ OG_TITLE }}">
     <meta name="twitter:description" content="{{ OG_DESCRIPTION }}">
     <meta name="twitter:image" content="{{ OG_IMAGE_URL }}">
 
@@ -36,7 +37,8 @@
         <header class="profile-section">
             <img src="{{ PROFILE_AVATAR_URL }}" alt="{{ PROFILE_NAME }}のプロフィール画像" class="profile-image" id="profile-avatar">
             <h1 class="profile-name" id="profile-name-display">{{ PROFILE_NAME }}</h1>
-            <p class="profile-bio" id="profile-bio-display">{{ PROFILE_BIO_HTML }}</p> <div class="social-links">
+            <p class="profile-bio" id="profile-bio-display">{{ PROFILE_BIO_HTML }}</p>
+            <div class="social-links">
                 <a href="https://x.com/kiyo4act/" target="_blank" rel="noopener noreferrer" class="social-link button-style">
                     <i class="fa-brands fa-x-twitter"></i> X (旧Twitter)
                 </a>
@@ -70,7 +72,6 @@
             <p>最終更新日: <span id="page-last-updated">読み込み中...</span></p>
             <p>&copy; <span id="current-year"></span> <span id="footer-profile-name">{{ PROFILE_NAME }}</span></p>
         </footer>
-    </div>
-    <script src="script.js"></script>
-</body>
+    </div> <script src="script.js"></script>
+    <script src="tools-loader.js"></script> </body>
 </html>
