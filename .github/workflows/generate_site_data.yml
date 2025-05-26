@@ -21,7 +21,7 @@ jobs:
       # あなたのGitHubユーザー名をここに設定してください。
       # より安全な方法として、リポジトリの Settings > Secrets and variables > Actions > Variables に
       # 例えば GH_USERNAME という名前でユーザー名を設定し、ここで ${{ vars.GH_USERNAME }} と読み込むことを推奨します。
-      TARGET_GITHUB_USERNAME: kiyo4act # ★★★ あなたのGitHubユーザー名に置き換えてください ★★★
+      TARGET_GITHUB_USERNAME: ${{ vars.GH_USERNAME }} # ★★★ あなたのGitHubユーザー名に置き換えてください ★★★
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
