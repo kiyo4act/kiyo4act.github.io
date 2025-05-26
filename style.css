@@ -1,4 +1,4 @@
-/* style.css - 完全版 */
+/* style.css - Font Awesomeアイコン微調整版 */
 :root {
     --primary-bg-color: #f0f2f5;
     --secondary-bg-color: #ffffff;
@@ -119,7 +119,9 @@ body {
 
 /* General Button Style */
 .button-style {
-    display: inline-block;
+    display: inline-flex; /* アイコンとテキストを横並びにするため inline-flex に変更 */
+    align-items: center; /* アイコンとテキストを垂直方向中央揃え */
+    justify-content: center; /* ボタン内でコンテンツを中央揃え */
     background-color: var(--button-bg-color);
     color: var(--button-text-color);
     padding: 10px 20px;
@@ -139,6 +141,14 @@ body {
     background-color: var(--button-hover-bg-color);
     border-color: var(--link-color);
 }
+
+/* Font Awesome icon specific styling */
+.button-style .fa-brands,
+.button-style .fa-solid { /* 他の種類のアイコンも使う場合 */
+    margin-right: 8px; /* アイコンとテキストの間に少しスペース */
+    font-size: 1.1em;  /* アイコンのサイズを少し大きく（お好みで調整） */
+}
+
 
 /* Sections */
 main section {
@@ -209,10 +219,13 @@ main section h2 {
     padding: 0;
 }
 .other-links-section li .button-style {
-    display: block;
-    text-align: center;
+    display: flex; /* inline-flexから変更し、ブロック要素のように振る舞いつつ内部はflex */
+    text-align: left; /* ボタン内のテキストは左寄せに（アイコンがあるので） */
+    justify-content: flex-start; /* コンテンツを左から配置 */
     margin-bottom: 10px;
 }
+/* もし「その他リンク」にもアイコンを入れるなら、上記の.button-style .fa-brandsなどの指定が共通で効きます */
+
 
 /* Footer */
 footer {
