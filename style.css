@@ -1,0 +1,167 @@
+/* style.css - 基本的なスタイルのプレースホルダー */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* LitLink風の背景色に少し寄せる */
+    color: #1c1e21;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 680px; /* LitLinkのコンテンツ幅に近い値 */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Profile Section */
+.profile-section {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #dddfe2;
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #fff; /* 画像に白い縁取り */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.profile-name {
+    font-size: 1.8em;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+}
+
+.profile-bio {
+    font-size: 0.95em;
+    color: #606770;
+    margin-bottom: 20px;
+    padding: 0 15px; /* 長文の場合の左右余白 */
+}
+
+.social-links a {
+    display: inline-block;
+    background-color: #e7f3ff; /* LitLinkのボタン背景色に似せる */
+    color: #1877f2; /* LitLinkのボタンテキスト色に似せる */
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: #dcebff; /* ホバー時の色を少し濃く */
+}
+
+/* Sections */
+main section {
+    margin-bottom: 30px;
+}
+
+main section h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #1c1e21;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #dddfe2;
+}
+
+/* Tools List Specific Styles */
+#tools-list-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tool-item {
+    background-color: #f7f7f7; /* 各ツールアイテムの背景 */
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.tool-item h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.2em;
+}
+
+.tool-item h3 a {
+    text-decoration: none;
+    color: #0d6efd; /* Bootstrapのリンク色に近い青 */
+    font-weight: 500;
+}
+
+.tool-item h3 a:hover {
+    text-decoration: underline;
+}
+
+.tool-item p {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #4b4f56;
+}
+
+.tool-item .tool-meta {
+    font-size: 0.8em;
+    color: #8a8d91;
+}
+
+.loading-message {
+    color: #606770;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Other Links Section (Similar to social links for now) */
+.other-links-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.other-links-section li a {
+    display: block; /* 各リンクをブロック要素に */
+    background-color: #f5f6f7;
+    color: #4b4f56;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.other-links-section li a:hover {
+    background-color: #e9ebee;
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #dddfe2;
+    font-size: 0.85em;
+    color: #8a8d91;
+}
