@@ -8,6 +8,7 @@ on:
     paths-ignore:
       - 'update-info.json'
       - 'profile-data.json'
+      - 'index.html' # 自動生成されるindex.htmlの変更ではトリガーしない
       - 'README.md'
   workflow_dispatch: {}
 
@@ -17,6 +18,8 @@ permissions:
 jobs:
   generate-data:
     runs-on: ubuntu-latest
+    env:
+      TARGET_GH_USERNAME: ${{ vars.GH_USERNAME }} # リポジトリ変数から読み込み
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -37,13 +40,16 @@ jobs:
 
       - name: Generate profile-data.json
         env:
-          # リポジトリ変数 GH_USERNAME をPythonスクリプトに渡すための環境変数として設定
-          TARGET_GH_USERNAME_FROM_WORKFLOW: ${{ vars.GH_USERNAME }}
-          # GitHub Actionsが提供する GITHUB_TOKEN をPythonスクリプトに渡す
           GH_TOKEN_FROM_WORKFLOW: ${{ secrets.GITHUB_TOKEN }}
-        # Pythonスクリプトのパスを指定 (リポジトリのルートに scripts/get_profile.py があると仮定)
+          # TARGET_GH_USERNAME_FROM_WORKFLOW は TARGET_GH_USERNAME を使う (jobレベルenv)
         run: |
-          python scripts/get_profile.py
+          python scripts/get_profile.py # get_profile.py は TARGET_GH_USERNAME_FROM_WORKFLOW を参照
+
+      - name: Fill HTML template to generate index.html
+        run: |
+          # このステップの前に profile-data.json が生成されている必要がある
+          python scripts/fill_template.py 
+          echo "Generated index.html from template."
 
       - name: Commit and push if files changed
         run: |
@@ -51,19 +57,21 @@ jobs:
           git config --local user.name "GitHub Action Bot"
           
           files_to_commit=""
+          # コミット対象ファイルを確認して追加
           if [ -f update-info.json ]; then files_to_commit="$files_to_commit update-info.json"; fi
           if [ -f profile-data.json ]; then files_to_commit="$files_to_commit profile-data.json"; fi
+          if [ -f index.html ]; then files_to_commit="$files_to_commit index.html"; fi # index.html もコミット対象に
           
           if [ -n "$files_to_commit" ]; then
             echo "Files to commit: $files_to_commit"
             git add $files_to_commit
             if git diff --staged --quiet; then
-              echo "No changes to JSON data files."
+              echo "No changes to generated files."
             else
-              git commit -m "Automated: Update site data (JSON files)"
+              git commit -m "Automated: Update site data and index.html" # コミットメッセージ更新
               git push
-              echo "Updated JSON data files have been pushed to the repository."
+              echo "Updated files have been pushed to the repository."
             fi
           else
-            echo "No JSON data files were generated or found to commit."
+            echo "No files were generated or found to commit."
           fi
