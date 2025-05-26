@@ -1,4 +1,4 @@
-# .github/workflows/generate_site_data.yml (デバッグステップ追加版)
+# .github/workflows/generate_site_data.yml (本番用)
 name: Generate Site Data
 
 on:
@@ -18,9 +18,9 @@ permissions:
 jobs:
   generate-data:
     runs-on: ubuntu-latest
-    # ジョブ全体で利用可能な環境変数を定義 (もしあれば)
+    # リポジトリ変数 GH_USERNAME は、ステップ内の env で直接参照します
     # env:
-    #   TARGET_GH_USERNAME: ${{ vars.GH_USERNAME }} # ここで定義しても良いが、ステップ内で直接参照でも可
+    #   TARGET_GH_USERNAME: ${{ vars.GH_USERNAME }} # ジョブレベルで定義する必要は必ずしもありません
 
     steps:
       - name: Checkout repository
@@ -34,42 +34,6 @@ jobs:
       - name: Install Python dependencies
         run: pip install requests
 
-      # --- デバッグステップ開始 ---
-      - name: Debug Workflow Variables
-        run: |
-          echo "--- Debugging Workflow Variables ---"
-          echo "Value ofリポジトリ変数 'GH_USERNAME' (via vars context): [${{ vars.GH_USERNAME }}]"
-          echo "Length of GH_USERNAME: ${{ env.GH_USERNAME_LENGTH }}"
-          
-          echo "Checking GITHUB_TOKEN presence (this will not show the token value):"
-          if [ -n "${{ secrets.GITHUB_TOKEN }}" ]; then
-            echo "GITHUB_TOKEN is set."
-          else
-            echo "GITHUB_TOKEN is NOT set or is empty."
-          fi
-          echo "--- End Debugging ---"
-        env:
-          # vars.GH_USERNAMEの長さを確認するために一時的な環境変数に設定
-          GH_USERNAME_LENGTH: ${{ matrix.GH_USERNAME_LENGTH_CALC.outputs.length }} # 下記の matrix/outputs を使うなら
-          # もっとシンプルに以下でもOK (ただし、空の場合0と表示されないかも)
-          # GH_USERNAME_LENGTH: ${{ toJson(vars.GH_USERNAME) }} -> これだとJSON文字列になるので不適切
-          # シェルで長さを取得する方が確実かもしれないが、まずは直接表示で確認
-          # matrix/outputs を使わない直接的な長さの表示は難しい。まずは値の表示で確認する。
-          # 一旦、上記 length の行は削除し、値の表示で確認する
-          DUMMY_VAR_FOR_SYNTAX: "dummy" # envブロックが空だとエラーになる場合があるのでダミー
-
-      # デバッグステップの改善 (値の長さをより確実に表示する試み)
-      - name: Debug GH_USERNAME Variable Content
-        run: |
-          echo "Raw value of vars.GH_USERNAME: [${{ vars.GH_USERNAME }}]"
-          USERNAME_VAR="${{ vars.GH_USERNAME }}"
-          if [ -z "$USERNAME_VAR" ]; then
-            echo "vars.GH_USERNAME appears to be empty or not set."
-          else
-            echo "vars.GH_USERNAME is set, length: ${#USERNAME_VAR}"
-          fi
-      # --- デバッグステップ終了 ---
-
       - name: Generate update-info.json
         run: |
           echo "{\"lastUpdated\": \"$(date -u +'%Y-%m-%dT%H:%M:%SZ')\"}" > update-info.json
@@ -78,14 +42,19 @@ jobs:
 
       - name: Generate profile-data.json
         env:
-          # リポジトリ変数 GH_USERNAME を Python スクリプトに渡すための環境変数として設定
+          # リポジトリ変数 GH_USERNAME を Python スクリプトに渡す
           TARGET_GH_USERNAME_FROM_WORKFLOW: ${{ vars.GH_USERNAME }}
-          # GitHub Actionsが提供する GITHUB_TOKEN をPythonスクリプトに渡す
+          # GitHub Actionsが提供する GITHUB_TOKEN を Python スクリプトに渡す
           GH_TOKEN_FROM_WORKFLOW: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "--- Running get_profile.py ---"
-          echo "Passing TARGET_GH_USERNAME_FROM_WORKFLOW: [${{ env.TARGET_GH_USERNAME_FROM_WORKFLOW }}]" # このステップで実際に渡る値
-          python scripts/get_profile.py
+          echo "--- Running get_profile.py to generate profile-data.json ---"
+          python scripts/get_profile.py # scripts/get_profile.py を実行
+
+      - name: Fill HTML template to generate index.html
+        run: |
+          echo "--- Running fill_template.py to generate index.html ---"
+          python scripts/fill_template.py # scripts/fill_template.py を実行
+          echo "Generated index.html from template."
 
       - name: Commit and push if files changed
         run: |
@@ -103,10 +72,11 @@ jobs:
             if git diff --staged --quiet; then
               echo "No changes to generated files."
             else
-              git commit -m "Automated: Update site data (JSON files)"
+              # コミットメッセージを index.html の更新も含むように修正
+              git commit -m "Automated: Update site data and index.html" 
               git push
-              echo "Updated JSON data files have been pushed to the repository."
+              echo "Updated generated files have been pushed to the repository."
             fi
           else
-            echo "No JSON data files were generated or found to commit."
+            echo "No files were generated or found to commit."
           fi
