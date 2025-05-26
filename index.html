@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【あなたの名前/活動名】のリンク集</title>
+    <meta name="description" content="【あなたの簡単な紹介文やこのページの説明】">
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <div class="container">
+        <header class="profile-section">
+            <img src="images/profile.jpg" alt="プロフィール画像" class="profile-image">
+            <h1 class="profile-name">【あなたの名前/活動名】</h1>
+            <p class="profile-bio">
+                【ここにあなたの自己紹介文が入ります。趣味、スキル、関心のあること、現在取り組んでいることなどを自由に記述してください。LitLinkのようにもう少し短いキャッチフレーズでも良いでしょう。】
+            </p>
+            <div class="social-links">
+                <a href="【TwitterのURL】" target="_blank" rel="noopener noreferrer" class="social-link">Twitter</a>
+                <a href="【GitHubのURL】" target="_blank" rel="noopener noreferrer" class="social-link">GitHub</a>
+                <a href="【ブログや他のSNSのURL】" target="_blank" rel="noopener noreferrer" class="social-link">ブログ</a>
+                </div>
+        </header>
+
+        <main>
+            <section class="tools-section">
+                <h2>公開しているツール</h2>
+                <div id="tools-list-container">
+                    <p class="loading-message">ツール一覧を読み込み中...</p>
+                    </div>
+            </section>
+
+            <section class="other-links-section">
+                <h2>その他リンク</h2>
+                <ul>
+                    <li><a href="【その他の重要なリンク1のURL】" target="_blank" rel="noopener noreferrer">【リンク1のタイトル】</a></li>
+                    <li><a href="【その他の重要なリンク2のURL】" target="_blank" rel="noopener noreferrer">【リンク2のタイトル】</a></li>
+                    </ul>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; <span id="current-year"></span> 【あなたの名前/活動名】</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
