@@ -1,0 +1,118 @@
+# .github/workflows/generate_site_data.yml
+name: Generate Site Data
+
+on:
+  push:
+    branches:
+      - main # あなたのメインブランチ名に合わせてください (例: master, main)
+    paths-ignore: # これらのファイルの変更ではワークフローをトリガーしません
+      - 'update-info.json'
+      - 'profile-data.json'
+      - 'README.md' # READMEの変更も無視するなど、必要に応じて追加
+  workflow_dispatch: {} # GitHubのActionsタブから手動で実行も可能にします
+
+permissions:
+  contents: write # 生成したファイルをリポジトリにコミット・プッシュするために必要
+
+jobs:
+  generate-data:
+    runs-on: ubuntu-latest
+    env:
+      # あなたのGitHubユーザー名をここに設定してください。
+      # より安全な方法として、リポジトリの Settings > Secrets and variables > Actions > Variables に
+      # 例えば GH_USERNAME という名前でユーザー名を設定し、ここで ${{ vars.GH_USERNAME }} と読み込むことを推奨します。
+      TARGET_GITHUB_USERNAME: kiyo4act # ★★★ あなたのGitHubユーザー名に置き換えてください ★★★
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x' # Python 3.x の最新安定版を使用
+
+      - name: Install Python dependencies
+        run: pip install requests # GitHub APIへのリクエストに使用
+
+      - name: Generate update-info.json
+        run: |
+          # 現在の日時をISO 8601形式 (UTC) で取得
+          echo "{\"lastUpdated\": \"$(date -u +'%Y-%m-%dT%H:%M:%SZ')\"}" > update-info.json
+          echo "Generated update-info.json:"
+          cat update-info.json
+
+      - name: Generate profile-data.json
+        env:
+          # GITHUB_TOKENはGitHub Actionsによって自動的に提供されます
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Fetching GitHub profile for ${{ env.TARGET_GITHUB_USERNAME }}..."
+          # Pythonスクリプトをヒアドキュメントで実行
+          python - <<EOF
+import json
+import os
+import requests
+
+username = os.environ.get('TARGET_GITHUB_USERNAME')
+token = os.environ.get('GH_TOKEN')
+api_url = f'https://api.github.com/users/{username}'
+headers = {
+    'Accept': 'application/vnd.github.v3+json',
+    'Authorization': f'Bearer {token}' # GITHUB_TOKENを使用
+}
+
+output_data = { 'avatarUrl': '', 'name': username, 'bio': '', 'error': None }
+
+try:
+    response = requests.get(api_url, headers=headers, timeout=10) # 10秒でタイムアウト
+    response.raise_for_status() # HTTPエラーステータスコードの場合は例外を発生
+    
+    api_data = response.json()
+    
+    output_data['avatarUrl'] = api_data.get('avatar_url', '')
+    # nameがAPIから取得できない場合(null等)は、username(login名)を使用
+    output_data['name'] = api_data.get('name') if api_data.get('name') else api_data.get('login', username)
+    output_data['bio'] = api_data.get('bio', '')
+
+except requests.exceptions.RequestException as e:
+    print(f"Error fetching profile data from GitHub API: {e}")
+    output_data['error'] = str(e)
+    # エラー時もbioにメッセージを入れるなど調整可能
+    output_data['bio'] = 'GitHubプロフィールの読み込みに失敗しました。'
+
+except Exception as e_generic:
+    print(f"An unexpected error occurred: {e_generic}")
+    output_data['error'] = str(e_generic)
+    output_data['bio'] = '予期せぬエラーによりプロフィールの読み込みに失敗しました。'
+
+finally:
+    with open('profile-data.json', 'w', encoding='utf-8') as f:
+        json.dump(output_data, f, indent=2, ensure_ascii=False)
+
+    print("Generated profile-data.json:")
+    with open('profile-data.json', 'r', encoding='utf-8') as f_read:
+        print(f_read.read())
+EOF
+
+      - name: Commit and push if files changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action Bot"
+          
+          files_to_commit=""
+          if [ -f update-info.json ]; then files_to_commit="$files_to_commit update-info.json"; fi
+          if [ -f profile-data.json ]; then files_to_commit="$files_to_commit profile-data.json"; fi
+          
+          if [ -n "$files_to_commit" ]; then
+            git add $files_to_commit
+            # 変更があった場合のみコミット・プッシュ
+            if git diff --staged --quiet; then
+              echo "No changes to JSON data files."
+            else
+              git commit -m "Automated: Update site data (JSON files)"
+              git push
+              echo "Updated JSON data files have been pushed to the repository."
+            fi
+          else
+            echo "No JSON data files were generated or found to commit."
+          fi
