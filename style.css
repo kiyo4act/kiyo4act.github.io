@@ -1,4 +1,4 @@
-/* style.css - 更新版 */
+/* style.css - 完全版 */
 :root {
     --primary-bg-color: #f0f2f5;
     --secondary-bg-color: #ffffff;
@@ -17,18 +17,18 @@
 }
 
 [data-theme="dark"] {
-    --primary-bg-color: #18191a;        /* ダークモードの主要背景 */
-    --secondary-bg-color: #242526;     /* ダークモードのカード等背景 */
-    --primary-text-color: #e4e6eb;      /* ダークモードの主要テキスト */
-    --secondary-text-color: #b0b3b8;    /* ダークモードの補助テキスト */
-    --link-color: #4599ff;              /* ダークモードのリンク色 */
-    --button-bg-color: #3a3b3c;         /* ダークモードのボタン背景 */
-    --button-text-color: #e4e6eb;       /* ダークモードのボタンテキスト */
-    --button-hover-bg-color: #4f5051;   /* ダークモードのボタンホバー背景 */
-    --border-color: #3e4042;            /* ダークモードの境界線 */
-    --tool-item-bg-color: #303132;      /* ダークモードのツールアイテム背景 */
-    --tool-item-border-color: #404142;  /* ダークモードのツールアイテム境界線 */
-    --tool-link-color: #60afff;         /* ダークモードのツールリンク色 */
+    --primary-bg-color: #18191a;
+    --secondary-bg-color: #242526;
+    --primary-text-color: #e4e6eb;
+    --secondary-text-color: #b0b3b8;
+    --link-color: #4599ff;
+    --button-bg-color: #3a3b3c;
+    --button-text-color: #e4e6eb;
+    --button-hover-bg-color: #4f5051;
+    --border-color: #3e4042;
+    --tool-item-bg-color: #303132;
+    --tool-item-border-color: #404142;
+    --tool-link-color: #60afff;
     --box-shadow-light: rgba(255, 255, 255, 0.05);
     --box-shadow-strong: rgba(255, 255, 255, 0.05);
 }
@@ -37,12 +37,12 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
-    padding: 20px 0; /* 上下にもパディングを追加 */
+    padding: 20px 0;
     background-color: var(--primary-bg-color);
     color: var(--primary-text-color);
     display: flex;
-    flex-direction: column; /* コンテンツが少ない場合にフッターを一番下に固定しやすくするため */
-    align-items: center; /* コンテナを中央に */
+    flex-direction: column;
+    align-items: center;
     min-height: 100vh;
     box-sizing: border-box;
     transition: background-color 0.3s, color 0.3s;
@@ -54,7 +54,7 @@ body {
     background-color: var(--secondary-bg-color);
     border-radius: 8px;
     box-shadow: 0 2px 4px var(--box-shadow-light), 0 8px 16px var(--box-shadow-strong);
-    margin: 20px; /* 上下左右のマージン */
+    margin: 20px;
     padding: 20px;
     box-sizing: border-box;
     transition: background-color 0.3s;
@@ -62,8 +62,8 @@ body {
 
 /* Theme switcher button container */
 .theme-switcher-container {
-    text-align: right; /* ボタンを右寄せに */
-    margin-bottom: 10px; /* プロフィールセクションとの間に少し余白 */
+    text-align: right;
+    margin-bottom: 10px;
 }
 
 #theme-toggle-button {
@@ -81,7 +81,6 @@ body {
     background-color: var(--button-hover-bg-color);
 }
 
-
 /* Profile Section */
 .profile-section {
     text-align: center;
@@ -96,7 +95,7 @@ body {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 15px;
-    border: 3px solid var(--secondary-bg-color); /* 背景色と同じにして目立たなく */
+    border: 3px solid var(--secondary-bg-color);
     box-shadow: 0 0 10px var(--box-shadow-light);
 }
 
@@ -115,7 +114,7 @@ body {
 }
 
 .social-links {
-    margin-top: 10px; /* 自己紹介文との間に少しスペース */
+    margin-top: 10px;
 }
 
 /* General Button Style */
@@ -129,18 +128,17 @@ body {
     text-decoration: none;
     font-weight: 500;
     font-size: 0.9em;
-    border: 1px solid transparent; /* 枠線は通常透明 */
+    border: 1px solid transparent;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
-.social-links .button-style { /* Social links might have slightly different margins or padding if needed */
+.social-links .button-style {
     padding: 10px 15px;
 }
 
 .button-style:hover {
     background-color: var(--button-hover-bg-color);
-    border-color: var(--link-color); /* ホバー時に枠線を見せるなど */
+    border-color: var(--link-color);
 }
-
 
 /* Sections */
 main section {
@@ -196,7 +194,7 @@ main section h2 {
 
 .tool-item .tool-meta {
     font-size: 0.8em;
-    color: var(--secondary-text-color); /* 少し薄めの色 */
+    color: var(--secondary-text-color);
 }
 
 .loading-message {
@@ -210,12 +208,11 @@ main section h2 {
     list-style: none;
     padding: 0;
 }
-.other-links-section li .button-style { /* Ensure other links also use button style */
-    display: block; /* Make each link take full width of its list item */
+.other-links-section li .button-style {
+    display: block;
     text-align: center;
-    margin-bottom: 10px; /* Add some space between buttons */
+    margin-bottom: 10px;
 }
-
 
 /* Footer */
 footer {
