@@ -39,17 +39,17 @@
             <h1 class="profile-name" id="profile-name-display">KIYO*</h1>
             <p class="profile-bio" id="profile-bio-display">日々のどうでもいい話・お気持ち話ぜんぶ好き。人間が好き。</p>
             
-            <div class="social-links" id="social-links-container">
-                <a href="https://x.com/kiyo4act/" target="_blank" rel="noopener noreferrer" class="social-link button-style" data-tooltip-id="@kiyo4act" aria-label="X (旧Twitter) @kiyo4act">
+            <div class="social-links">
+                <a href="https://x.com/kiyo4act/" target="_blank" rel="noopener noreferrer" class="social-link button-style" title="X ID: @kiyo4act">
                     <i class="fa-brands fa-x-twitter"></i> X
                 </a>
-                <a href="https://www.youtube.com/@kiyo4vlog」です。" target="_blank" rel="noopener noreferrer" class="social-link button-style" data-tooltip-id="@kiyo4vlog" aria-label="YouTube @kiyo4vlog">
+                <a href="https://www.youtube.com/@kiyo4vlog」です。" target="_blank" rel="noopener noreferrer" class="social-link button-style" title="YouTube ID: @kiyo4vlog">
                     <i class="fa-brands fa-youtube"></i> YouTube
                 </a>
-                <a href="#" class="social-link button-style discord-link" data-tooltip-id="@kiyo4act" data-copy-id="kiyo4act" aria-label="Discord ID @kiyo4act をコピー">
+                <span id="discord-copy-trigger" class="social-link button-style" role="button" tabindex="0" title="Discord ID: @kiyo4act (クリックでコピー)">
                     <i class="fa-brands fa-discord"></i> Discord
-                </a>
-                <a href="https://github.com/kiyo4act" target="_blank" rel="noopener noreferrer" class="social-link button-style" data-tooltip-id="kiyo4act" aria-label="GitHub kiyo4act">
+                </span>
+                <a href="https://github.com/kiyo4act" target="_blank" rel="noopener noreferrer" class="social-link button-style" title="GitHub ID: kiyo4act">
                     <i class="fa-brands fa-github"></i> GitHub
                 </a>
             </div>
@@ -57,38 +57,38 @@
 
         <main>
             <section class="featured-links-section">
-                <h2>ピックアップ</h2>
-                <div class="featured-links-grid">
-                    <div class="featured-link-item">
-                        <a href="https://18konoe.booth.pm/" target="_blank" rel="noopener noreferrer" class="featured-link-anchor">
-                            <div class="featured-link-icon-wrapper">
-                                <i class="fa-solid fa-store"></i>
+                <h2>ピックアップ</h2> {/* セクション名を「ピックアップ」としてみました。お好みで変更してください */}
+                <div class="featured-items-container">
+                    <div class="featured-item">
+                        <a href="https://18konoe.booth.pm/" target="_blank" rel="noopener noreferrer" class="featured-item-link">
+                            <div class="featured-item-icon-container">
+                                <i class="fa-solid fa-store featured-item-icon"></i>
                             </div>
-                            <div class="featured-link-content">
-                                <h3 class="featured-link-title">Boothショップ</h3>
-                                <p class="featured-link-description">VRChat向けアクセサリーなど販売中</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="featured-link-item">
-                        <a href="https://konoe.studio/" target="_blank" rel="noopener noreferrer" class="featured-link-anchor">
-                            <div class="featured-link-icon-wrapper">
-                                <i class="fa-solid fa-file-lines"></i>
-                            </div>
-                            <div class="featured-link-content">
-                                <h3 class="featured-link-title">ブログ</h3>
-                                <p class="featured-link-description">PC・SW・VR・ガジェット関連ブログ</p>
+                            <div class="featured-item-content">
+                                <h3 class="featured-item-title">Booth ショップ</h3>
+                                <p class="featured-item-description">VRChat向けアクセサリーなど販売中</p>
                             </div>
                         </a>
                     </div>
-                    <div class="featured-link-item">
-                        <a href="https://x.com/kiyo4act/articles" target="_blank" rel="noopener noreferrer" class="featured-link-anchor">
-                            <div class="featured-link-icon-wrapper">
-                                <i class="fa-solid fa-newspaper"></i>
+                    <div class="featured-item">
+                        <a href="https://konoe.studio/" target="_blank" rel="noopener noreferrer" class="featured-item-link">
+                            <div class="featured-item-icon-container">
+                                <i class="fa-solid fa-file-lines featured-item-icon"></i>
                             </div>
-                            <div class="featured-link-content">
-                                <h3 class="featured-link-title">X 記事</h3>
-                                <p class="featured-link-description">Tipsやまとめなどを記事にしています</p>
+                            <div class="featured-item-content">
+                                <h3 class="featured-item-title">ブログ</h3>
+                                <p class="featured-item-description">PC・SW・VR・ガジェット関連ブログ</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="featured-item">
+                        <a href="https://x.com/kiyo4act/articles" target="_blank" rel="noopener noreferrer" class="featured-item-link">
+                            <div class="featured-item-icon-container">
+                               <i class="fa-brands fa-x-twitter featured-item-icon"></i> {/* X記事なのでXアイコンを使用 */}
+                            </div>
+                            <div class="featured-item-content">
+                                <h3 class="featured-item-title">X 記事</h3>
+                                <p class="featured-item-description">Tipsやまとめなどを記事にしています</p>
                             </div>
                         </a>
                     </div>
@@ -116,13 +116,7 @@
             <p>© <span id="current-year"></span> <span id="footer-profile-name">KIYO*</span></p>
         </footer>
     </div>
-
-    <div id="toast-notification" class="toast" aria-live="assertive" aria-atomic="true">
-        クリップボードにコピーしました！
-    </div>
-
-    <div id="tooltip" class="tooltip" role="tooltip"></div>
-
+    <div id="toast-container"></div> {/* トースト通知用コンテナ */}
     <script src="script.js"></script>
     <script src="tools-loader.js"></script>
 </body>
