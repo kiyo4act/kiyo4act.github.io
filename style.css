@@ -271,7 +271,7 @@ main section h2 {
     /* タイトルサイズ */
     font-weight: 600;
     margin-top: 0;
-    margin-bottom: 5px;
+    margin-bottom: 0;
     color: var(--featured-item-title-color);
 }
 
@@ -279,6 +279,7 @@ main section h2 {
     font-size: 0.85em;
     /* 詳細文サイズ */
     color: var(--featured-item-description-color);
+    margin-top: 0;
     margin-bottom: 0;
     line-height: 1.4;
 }
