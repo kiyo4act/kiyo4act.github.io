@@ -83,8 +83,10 @@ body {
 }
 
 .theme-switcher-container {
+    position: relative;
+    z-index: 10;
     text-align: right;
-    margin-bottom: 10px;
+    margin-bottom: -50px;
 }
 
 #theme-toggle-button {
@@ -120,7 +122,7 @@ body {
 /* カバー画像コンテナ */
 .profile-cover-container {
     width: 100%;
-    height: 200px;
+    height: 250px;
     position: relative;
     overflow: hidden;
     background-color: var(--button-bg-color);
@@ -179,6 +181,10 @@ body {
     color: var(--secondary-text-color);
     margin: 0;
     line-height: 1.5;
+    word-break: keep-all;
+    /* 日本語の句読点での改行を優先 */
+    overflow-wrap: break-word;
+    /* 長い単語がある場合の保険 */
 }
 
 /* SNSリンク集 */
@@ -422,7 +428,7 @@ main section h2 {
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     .profile-cover-container {
-        height: 150px;
+        height: 200;
     }
 
     .profile-content {
@@ -461,7 +467,7 @@ main section h2 {
     }
 
     .profile-cover-container {
-        height: 120px;
+        height: 200px;
     }
 
     .profile-content {
@@ -480,6 +486,8 @@ main section h2 {
 
     .profile-bio {
         font-size: 0.9em;
+        word-break: keep-all;
+        /* スマホでも句読点での改行を維持 */
     }
 
     .social-link.button-style,
