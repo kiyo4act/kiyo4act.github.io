@@ -18,7 +18,7 @@
     <meta property="og:url"
           content="{{ SITE_URL }}">
     <meta property="og:image"
-          content="{{ OG_IMAGE_URL }}">
+          content="images/OGP.png">
     <meta name="twitter:card"
           content="summary_large_image">
     <meta name="twitter:title"
@@ -26,7 +26,7 @@
     <meta name="twitter:description"
           content="{{ OG_DESCRIPTION }}">
     <meta name="twitter:image"
-          content="{{ OG_IMAGE_URL }}">
+          content="images/OGP.png">
 
     <link rel="stylesheet"
           href="style.css">
@@ -56,14 +56,23 @@
         </div>
 
         <header class="profile-section">
-            <img src="{{ PROFILE_AVATAR_URL }}"
-                 alt="{{ PROFILE_NAME }}のプロフィール画像"
-                 class="profile-image"
-                 id="profile-avatar">
-            <h1 class="profile-name"
-                id="profile-name-display">{{ PROFILE_NAME }}</h1>
-            <p class="profile-bio"
-               id="profile-bio-display">{{ PROFILE_BIO_HTML }}</p>
+            <div class="profile-cover-container">
+                <div class="profile-cover-image"></div>
+            </div>
+            <div class="profile-content">
+                <div class="profile-avatar-wrapper">
+                    <img src="{{ PROFILE_AVATAR_URL }}"
+                         alt="{{ PROFILE_NAME }}のプロフィール画像"
+                         class="profile-image"
+                         id="profile-avatar">
+                </div>
+                <div class="profile-info">
+                    <h1 class="profile-name"
+                        id="profile-name-display">{{ PROFILE_NAME }}</h1>
+                    <p class="profile-bio"
+                       id="profile-bio-display">{{ PROFILE_BIO_HTML }}</p>
+                </div>
+            </div>
 
             <div class="social-links">
                 <a href="https://x.com/kiyo4act/"
