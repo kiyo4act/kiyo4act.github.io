@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>プロフィール画像デザイン</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet"
+        href="../style.css">
+  <link rel="stylesheet"
+        href="styles.css">
+</head>
+
+<body>
+  <button class="theme-switcher"
+          id="theme-switcher-btn">
+    <i id="theme-icon"
+       class="fa-solid fa-sun"></i> テーマ切替
+  </button>
+
+  <div class="header">
+    <h1>プロフィール画像デザインサンプル</h1>
+    <p class="subtitle">100種類のデザインから見え方をテストできます</p>
+  </div>
+
+  <!-- リアルタイムプレビューセクション -->
+  <div class="section-divider">🎨 プレビュー</div>
+
+  <div class="preview-section">
+    <header class="profile-section">
+      <div class="profile-cover-container">
+        <div class="profile-cover-image"></div>
+      </div>
+      <div class="profile-content">
+        <div class="profile-avatar-wrapper soft-shadow-wrapper"
+             id="preview-avatar">
+          <img src="https://avatars.githubusercontent.com/u/677533?v=4"
+               alt="KIYO*のプロフィール画像"
+               class="profile-image">
+        </div>
+        <div class="profile-info">
+          <h1 class="profile-name">KIYO*</h1>
+          <p class="profile-bio">日々のどうでもいい話・お気持ち話ぜんぶ好き。人間が好き。</p>
+        </div>
+      </div>
+    </header>
+    <div class="current-style-info">
+      <p>現在のスタイル: <span id="current-style-name">ソフトシャドウ</span></p>
+    </div>
+  </div>
+
+  <!-- 新しいデザイン提案 -->
+  <div class="section-divider">✨ テスト用デザイン</div>
+  <p class="style-hint">クリックしてスタイルを変更してみてください</p>
+
+  <div class="samples-grid">
+    <!-- 1. グラデーションリング -->
+    <div class="sample-card clickable"
+         data-style="gradient-ring-wrapper"
+         data-style-name="グラデーションリング">
+      <h3 class="sample-title">1. グラデーションリング</h3>
+      <p class="sample-description">回転するAuroraカラーのグラデーションリング。動的で目を引くデザイン</p>
+      <div class="avatar-container">
+        <div class="gradient-ring-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. グロウエフェクト -->
+    <div class="sample-card clickable"
+         data-style="glow-effect-wrapper"
+         data-style-name="グロウエフェクト">
+      <h3 class="sample-title">2. グロウエフェクト</h3>
+      <p class="sample-description">柔らかい発光効果。幻想的で優しい印象を与える</p>
+      <div class="avatar-container">
+        <div class="glow-effect-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. パルスアニメーション -->
+    <div class="sample-card clickable"
+         data-style="pulse-animation-wrapper"
+         data-style-name="パルスアニメーション">
+      <h3 class="sample-title">3. パルスアニメーション</h3>
+      <p class="sample-description">呼吸するような優しいパルス効果。生き生きとした印象</p>
+      <div class="avatar-container">
+        <div class="pulse-animation-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. ガラスモーフィズム -->
+    <div class="sample-card clickable"
+         data-style="glassmorphism-wrapper"
+         data-style-name="ガラスモーフィズム">
+      <h3 class="sample-title">4. ガラスモーフィズム</h3>
+      <p class="sample-description">半透明ガラスのような質感。モダンで洗練されたデザイン</p>
+      <div class="avatar-container">
+        <div class="glassmorphism-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. ネオンボーダー -->
+    <div class="sample-card clickable"
+         data-style="neon-border-wrapper"
+         data-style-name="ネオンボーダー">
+      <h3 class="sample-title">5. ネオンボーダー</h3>
+      <p class="sample-description">電子的なネオンライトの輝き。未来的でクールな印象</p>
+      <div class="avatar-container">
+        <div class="neon-border-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 3Dシャドウレイヤー -->
+    <div class="sample-card clickable"
+         data-style="shadow-3d-wrapper"
+         data-style-name="3Dシャドウレイヤー">
+      <h3 class="sample-title">6. 3Dシャドウレイヤー</h3>
+      <p class="sample-description">立体感を強調した影の重なり。深みのある表現</p>
+      <div class="avatar-container">
+        <div class="shadow-3d-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. ホログラフィック効果 -->
+    <div class="sample-card clickable"
+         data-style="holographic-wrapper"
+         data-style-name="ホログラフィック効果">
+      <h3 class="sample-title">7. ホログラフィック効果</h3>
+      <p class="sample-description">虹色に変化するホログラムのような効果。華やかで印象的</p>
+      <div class="avatar-container">
+        <div class="holographic-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 磁場エフェクト -->
+    <div class="sample-card clickable"
+         data-style="magnetic-field-wrapper"
+         data-style-name="磁場エフェクト">
+      <h3 class="sample-title">8. 磁場エフェクト</h3>
+      <p class="sample-description">磁力線のような流れるパターン。インタラクティブな印象</p>
+      <div class="avatar-container">
+        <div class="magnetic-field-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. Aurora Pulse -->
+    <div class="sample-card clickable"
+         data-style="aurora-pulse-wrapper"
+         data-style-name="Aurora Pulse">
+      <h3 class="sample-title">9. Aurora Pulse</h3>
+      <p class="sample-description">グラデーションが脈動するように動くアニメーション枠</p>
+      <div class="avatar-container">
+        <div class="aurora-pulse-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. Floating Crystal -->
+    <div class="sample-card clickable"
+         data-style="crystal-wrapper"
+         data-style-name="Floating Crystal">
+      <h3 class="sample-title">10. Floating Crystal</h3>
+      <p class="sample-description">透明感のあるクリスタルのような8角形の枠</p>
+      <div class="avatar-container">
+        <div class="crystal-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. Double Shadow Layers -->
+    <div class="sample-card clickable"
+         data-style="double-shadow-wrapper"
+         data-style-name="Double Shadow">
+      <h3 class="sample-title">11. Double Shadow</h3>
+      <p class="sample-description">虹色のインナーグローと動くシャドウの組み合わせ</p>
+      <div class="avatar-container">
+        <div class="double-shadow-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. Ripple Effect -->
+    <div class="sample-card clickable"
+         data-style="ripple-wrapper"
+         data-style-name="Ripple Effect">
+      <h3 class="sample-title">12. Ripple Effect</h3>
+      <p class="sample-description">水面に広がる波紋のようなエフェクト</p>
+      <div class="avatar-container">
+        <div class="ripple-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 13. Shimmer Border -->
+    <div class="sample-card clickable"
+         data-style="shimmer-wrapper"
+         data-style-name="Shimmer Border">
+      <h3 class="sample-title">13. Shimmer Border</h3>
+      <p class="sample-description">キラキラと輝くボーダーエフェクト</p>
+      <div class="avatar-container">
+        <div class="shimmer-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 14. Orbit Dots -->
+    <div class="sample-card clickable"
+         data-style="orbit-dots-wrapper"
+         data-style-name="Orbit Dots">
+      <h3 class="sample-title">14. Orbit Dots</h3>
+      <p class="sample-description">周回する小さな光の点</p>
+      <div class="avatar-container">
+        <div class="orbit-dots-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 15. Gradient Shift -->
+    <div class="sample-card clickable"
+         data-style="gradient-shift-wrapper"
+         data-style-name="Gradient Shift">
+      <h3 class="sample-title">15. Gradient Shift</h3>
+      <p class="sample-description">色が流れるように変化するグラデーション</p>
+      <div class="avatar-container">
+        <div class="gradient-shift-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 16. Pixelated Frame -->
+    <div class="sample-card clickable"
+         data-style="pixelated-wrapper"
+         data-style-name="Pixelated Frame">
+      <h3 class="sample-title">16. Pixelated Frame</h3>
+      <p class="sample-description">レトロなピクセルアート風フレーム</p>
+      <div class="avatar-container">
+        <div class="pixelated-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 17. Flame Border -->
+    <div class="sample-card clickable"
+         data-style="flame-wrapper"
+         data-style-name="Flame Border">
+      <h3 class="sample-title">17. Flame Border</h3>
+      <p class="sample-description">炎のように揺らめくボーダー</p>
+      <div class="avatar-container">
+        <div class="flame-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 18. Electric Arc -->
+    <div class="sample-card clickable"
+         data-style="electric-arc-wrapper"
+         data-style-name="Electric Arc">
+      <h3 class="sample-title">18. Electric Arc</h3>
+      <p class="sample-description">電気が走るようなエフェクト</p>
+      <div class="avatar-container">
+        <div class="electric-arc-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 19. Morphing Shape -->
+    <div class="sample-card clickable"
+         data-style="morphing-wrapper"
+         data-style-name="Morphing Shape">
+      <h3 class="sample-title">19. Morphing Shape</h3>
+      <p class="sample-description">形が変化するアニメーション枠</p>
+      <div class="avatar-container">
+        <div class="morphing-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 20. Rainbow Trail -->
+    <div class="sample-card clickable"
+         data-style="rainbow-trail-wrapper"
+         data-style-name="Rainbow Trail">
+      <h3 class="sample-title">20. Rainbow Trail</h3>
+      <p class="sample-description">虹色の軌跡を描くアニメーション</p>
+      <div class="avatar-container">
+        <div class="rainbow-trail-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 21-100: 残りのデザイン -->
+    <!-- 各デザインを同様の構造で追加 -->
+
+    <!-- 21. Dotted Pulse -->
+    <div class="sample-card clickable"
+         data-style="dotted-pulse-wrapper"
+         data-style-name="Dotted Pulse">
+      <h3 class="sample-title">21. Dotted Pulse</h3>
+      <p class="sample-description">点線が脈動するエフェクト</p>
+      <div class="avatar-container">
+        <div class="dotted-pulse-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 22. Cosmic Dust -->
+    <div class="sample-card clickable"
+         data-style="cosmic-dust-wrapper"
+         data-style-name="Cosmic Dust">
+      <h3 class="sample-title">22. Cosmic Dust</h3>
+      <p class="sample-description">宇宙塵のようなキラキラ効果</p>
+      <div class="avatar-container">
+        <div class="cosmic-dust-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 23. Glitch Effect -->
+    <div class="sample-card clickable"
+         data-style="glitch-wrapper"
+         data-style-name="Glitch Effect">
+      <h3 class="sample-title">23. Glitch Effect</h3>
+      <p class="sample-description">デジタルグリッチのような効果</p>
+      <div class="avatar-container">
+        <div class="glitch-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 24. Soft Bloom -->
+    <div class="sample-card clickable"
+         data-style="soft-bloom-wrapper"
+         data-style-name="Soft Bloom">
+      <h3 class="sample-title">24. Soft Bloom</h3>
+      <p class="sample-description">柔らかく咲くような光のエフェクト</p>
+      <div class="avatar-container">
+        <div class="soft-bloom-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 25. Hexagon Frame -->
+    <div class="sample-card clickable"
+         data-style="hexagon-wrapper"
+         data-style-name="Hexagon Frame">
+      <h3 class="sample-title">25. Hexagon Frame</h3>
+      <p class="sample-description">六角形のモダンなフレーム</p>
+      <div class="avatar-container">
+        <div class="hexagon-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 26. Wave Border -->
+    <div class="sample-card clickable"
+         data-style="wave-border-wrapper"
+         data-style-name="Wave Border">
+      <h3 class="sample-title">26. Wave Border</h3>
+      <p class="sample-description">波打つようなボーダーエフェクト</p>
+      <div class="avatar-container">
+        <div class="wave-border-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 27. Particle Ring -->
+    <div class="sample-card clickable"
+         data-style="particle-ring-wrapper"
+         data-style-name="Particle Ring">
+      <h3 class="sample-title">27. Particle Ring</h3>
+      <p class="sample-description">粒子が舞うリングエフェクト</p>
+      <div class="avatar-container">
+        <div class="particle-ring-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 28. Laser Scan -->
+    <div class="sample-card clickable"
+         data-style="laser-scan-wrapper"
+         data-style-name="Laser Scan">
+      <h3 class="sample-title">28. Laser Scan</h3>
+      <p class="sample-description">レーザースキャンのような効果</p>
+      <div class="avatar-container">
+        <div class="laser-scan-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 29. Starburst -->
+    <div class="sample-card clickable"
+         data-style="starburst-wrapper"
+         data-style-name="Starburst">
+      <h3 class="sample-title">29. Starburst</h3>
+      <p class="sample-description">星が爆発するような輝き</p>
+      <div class="avatar-container">
+        <div class="starburst-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 30. Liquid Metal -->
+    <div class="sample-card clickable"
+         data-style="liquid-metal-wrapper"
+         data-style-name="Liquid Metal">
+      <h3 class="sample-title">30. Liquid Metal</h3>
+      <p class="sample-description">液体金属のような質感</p>
+      <div class="avatar-container">
+        <div class="liquid-metal-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 31. Diamond Cut -->
+    <div class="sample-card clickable"
+         data-style="diamond-cut-wrapper"
+         data-style-name="Diamond Cut">
+      <h3 class="sample-title">31. Diamond Cut</h3>
+      <p class="sample-description">ダイヤモンドカットのような輝き</p>
+      <div class="avatar-container">
+        <div class="diamond-cut-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 32. Smoke Ring -->
+    <div class="sample-card clickable"
+         data-style="smoke-ring-wrapper"
+         data-style-name="Smoke Ring">
+      <h3 class="sample-title">32. Smoke Ring</h3>
+      <p class="sample-description">煙のようなミスティックな効果</p>
+      <div class="avatar-container">
+        <div class="smoke-ring-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 33. Cyber Grid -->
+    <div class="sample-card clickable"
+         data-style="cyber-grid-wrapper"
+         data-style-name="Cyber Grid">
+      <h3 class="sample-title">33. Cyber Grid</h3>
+      <p class="sample-description">サイバーグリッドパターン</p>
+      <div class="avatar-container">
+        <div class="cyber-grid-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 34. Neon Pulse -->
+    <div class="sample-card clickable"
+         data-style="neon-pulse-wrapper"
+         data-style-name="Neon Pulse">
+      <h3 class="sample-title">34. Neon Pulse</h3>
+      <p class="sample-description">ネオンの脈動</p>
+      <div class="avatar-container">
+        <div class="neon-pulse-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 35. Crystal Prism -->
+    <div class="sample-card clickable"
+         data-style="crystal-prism-wrapper"
+         data-style-name="Crystal Prism">
+      <h3 class="sample-title">35. Crystal Prism</h3>
+      <p class="sample-description">プリズムのような虹色の輝き</p>
+      <div class="avatar-container">
+        <div class="crystal-prism-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 36. Bubble Float -->
+    <div class="sample-card clickable"
+         data-style="bubble-float-wrapper"
+         data-style-name="Bubble Float">
+      <h3 class="sample-title">36. Bubble Float</h3>
+      <p class="sample-description">浮遊する泡のエフェクト</p>
+      <div class="avatar-container">
+        <div class="bubble-float-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 37. Frost Glass -->
+    <div class="sample-card clickable"
+         data-style="frost-glass-wrapper"
+         data-style-name="Frost Glass">
+      <h3 class="sample-title">37. Frost Glass</h3>
+      <p class="sample-description">霜降りガラスのような効果</p>
+      <div class="avatar-container">
+        <div class="frost-glass-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 38. Lightning Strike -->
+    <div class="sample-card clickable"
+         data-style="lightning-strike-wrapper"
+         data-style-name="Lightning Strike">
+      <h3 class="sample-title">38. Lightning Strike</h3>
+      <p class="sample-description">稲妻のような電撃エフェクト</p>
+      <div class="avatar-container">
+        <div class="lightning-strike-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 39. Polygon Shift -->
+    <div class="sample-card clickable"
+         data-style="polygon-shift-wrapper"
+         data-style-name="Polygon Shift">
+      <h3 class="sample-title">39. Polygon Shift</h3>
+      <p class="sample-description">変形する多角形フレーム</p>
+      <div class="avatar-container">
+        <div class="polygon-shift-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 40. Solar Flare -->
+    <div class="sample-card clickable"
+         data-style="solar-flare-wrapper"
+         data-style-name="Solar Flare">
+      <h3 class="sample-title">40. Solar Flare</h3>
+      <p class="sample-description">太陽フレアのような爆発的な輝き</p>
+      <div class="avatar-container">
+        <div class="solar-flare-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 41. Retro Wave -->
+    <div class="sample-card clickable"
+         data-style="retro-wave-wrapper"
+         data-style-name="Retro Wave">
+      <h3 class="sample-title">41. Retro Wave</h3>
+      <p class="sample-description">レトロウェーブスタイル</p>
+      <div class="avatar-container">
+        <div class="retro-wave-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 42. Chrome Shine -->
+    <div class="sample-card clickable"
+         data-style="chrome-shine-wrapper"
+         data-style-name="Chrome Shine">
+      <h3 class="sample-title">42. Chrome Shine</h3>
+      <p class="sample-description">クロームメタルの輝き</p>
+      <div class="avatar-container">
+        <div class="chrome-shine-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 43. Spiral Light -->
+    <div class="sample-card clickable"
+         data-style="spiral-light-wrapper"
+         data-style-name="Spiral Light">
+      <h3 class="sample-title">43. Spiral Light</h3>
+      <p class="sample-description">螺旋状の光のエフェクト</p>
+      <div class="avatar-container">
+        <div class="spiral-light-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 44. Pulse Wave -->
+    <div class="sample-card clickable"
+         data-style="pulse-wave-wrapper"
+         data-style-name="Pulse Wave">
+      <h3 class="sample-title">44. Pulse Wave</h3>
+      <p class="sample-description">パルス波のリング</p>
+      <div class="avatar-container">
+        <div class="pulse-wave-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 45. Matrix Code -->
+    <div class="sample-card clickable"
+         data-style="matrix-code-wrapper"
+         data-style-name="Matrix Code">
+      <h3 class="sample-title">45. Matrix Code</h3>
+      <p class="sample-description">マトリックスコード風</p>
+      <div class="avatar-container">
+        <div class="matrix-code-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 46. Gradient Border -->
+    <div class="sample-card clickable"
+         data-style="gradient-border-wrapper"
+         data-style-name="Gradient Border">
+      <h3 class="sample-title">46. Gradient Border</h3>
+      <p class="sample-description">グラデーションボーダー</p>
+      <div class="avatar-container">
+        <div class="gradient-border-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 47. Flickering Light -->
+    <div class="sample-card clickable"
+         data-style="flickering-light-wrapper"
+         data-style-name="Flickering Light">
+      <h3 class="sample-title">47. Flickering Light</h3>
+      <p class="sample-description">ちらつく光のエフェクト</p>
+      <div class="avatar-container">
+        <div class="flickering-light-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 48. Dashed Spin -->
+    <div class="sample-card clickable"
+         data-style="dashed-spin-wrapper"
+         data-style-name="Dashed Spin">
+      <h3 class="sample-title">48. Dashed Spin</h3>
+      <p class="sample-description">回転する破線ボーダー</p>
+      <div class="avatar-container">
+        <div class="dashed-spin-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 49. Ice Crystal -->
+    <div class="sample-card clickable"
+         data-style="ice-crystal-wrapper"
+         data-style-name="Ice Crystal">
+      <h3 class="sample-title">49. Ice Crystal</h3>
+      <p class="sample-description">氷の結晶のような効果</p>
+      <div class="avatar-container">
+        <div class="ice-crystal-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 50. Gradient Pulse -->
+    <div class="sample-card clickable"
+         data-style="gradient-pulse-wrapper"
+         data-style-name="Gradient Pulse">
+      <h3 class="sample-title">50. Gradient Pulse</h3>
+      <p class="sample-description">脈動するグラデーション</p>
+      <div class="avatar-container">
+        <div class="gradient-pulse-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 51. Soft Shadows -->
+    <div class="sample-card clickable"
+         data-style="soft-shadows-wrapper"
+         data-style-name="Soft Shadows">
+      <h3 class="sample-title">51. Soft Shadows</h3>
+      <p class="sample-description">柔らかいシャドウエフェクト</p>
+      <div class="avatar-container">
+        <div class="soft-shadows-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 52. Border Fade -->
+    <div class="sample-card clickable"
+         data-style="border-fade-wrapper"
+         data-style-name="Border Fade">
+      <h3 class="sample-title">52. Border Fade</h3>
+      <p class="sample-description">フェードするボーダー</p>
+      <div class="avatar-container">
+        <div class="border-fade-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 53. Rainbow Glow -->
+    <div class="sample-card clickable"
+         data-style="rainbow-glow-wrapper"
+         data-style-name="Rainbow Glow">
+      <h3 class="sample-title">53. Rainbow Glow</h3>
+      <p class="sample-description">虹色に輝くグロー</p>
+      <div class="avatar-container">
+        <div class="rainbow-glow-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 54. Metallic Ring -->
+    <div class="sample-card clickable"
+         data-style="metallic-ring-wrapper"
+         data-style-name="Metallic Ring">
+      <h3 class="sample-title">54. Metallic Ring</h3>
+      <p class="sample-description">メタリックなリング</p>
+      <div class="avatar-container">
+        <div class="metallic-ring-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 55. Prism Effect -->
+    <div class="sample-card clickable"
+         data-style="prism-effect-wrapper"
+         data-style-name="Prism Effect">
+      <h3 class="sample-title">55. Prism Effect</h3>
+      <p class="sample-description">プリズムエフェクト</p>
+      <div class="avatar-container">
+        <div class="prism-effect-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 56. Soft Ring -->
+    <div class="sample-card clickable"
+         data-style="soft-ring-wrapper"
+         data-style-name="Soft Ring">
+      <h3 class="sample-title">56. Soft Ring</h3>
+      <p class="sample-description">ソフトなリング</p>
+      <div class="avatar-container">
+        <div class="soft-ring-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 57. Wave Pulse -->
+    <div class="sample-card clickable"
+         data-style="wave-pulse-wrapper"
+         data-style-name="Wave Pulse">
+      <h3 class="sample-title">57. Wave Pulse</h3>
+      <p class="sample-description">波状パルス</p>
+      <div class="avatar-container">
+        <div class="wave-pulse-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 58. Gradient Spin -->
+    <div class="sample-card clickable"
+         data-style="gradient-spin-wrapper"
+         data-style-name="Gradient Spin">
+      <h3 class="sample-title">58. Gradient Spin</h3>
+      <p class="sample-description">回転グラデーション</p>
+      <div class="avatar-container">
+        <div class="gradient-spin-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 59. Glow Ring -->
+    <div class="sample-card clickable"
+         data-style="glow-ring-wrapper"
+         data-style-name="Glow Ring">
+      <h3 class="sample-title">59. Glow Ring</h3>
+      <p class="sample-description">グローリング</p>
+      <div class="avatar-container">
+        <div class="glow-ring-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 60. Neon Circle -->
+    <div class="sample-card clickable"
+         data-style="neon-circle-wrapper"
+         data-style-name="Neon Circle">
+      <h3 class="sample-title">60. Neon Circle</h3>
+      <p class="sample-description">ネオンサークル</p>
+      <div class="avatar-container">
+        <div class="neon-circle-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 61. Breathing Border -->
+    <div class="sample-card clickable"
+         data-style="breathing-border-wrapper"
+         data-style-name="Breathing Border">
+      <h3 class="sample-title">61. Breathing Border</h3>
+      <p class="sample-description">呼吸するボーダー</p>
+      <div class="avatar-container">
+        <div class="breathing-border-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 62. Color Shift -->
+    <div class="sample-card clickable"
+         data-style="color-shift-wrapper"
+         data-style-name="Color Shift">
+      <h3 class="sample-title">62. Color Shift</h3>
+      <p class="sample-description">カラーシフト</p>
+      <div class="avatar-container">
+        <div class="color-shift-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 63. Sparkle Ring -->
+    <div class="sample-card clickable"
+         data-style="sparkle-ring-wrapper"
+         data-style-name="Sparkle Ring">
+      <h3 class="sample-title">63. Sparkle Ring</h3>
+      <p class="sample-description">キラキラリング</p>
+      <div class="avatar-container">
+        <div class="sparkle-ring-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 64. Double Ring -->
+    <div class="sample-card clickable"
+         data-style="double-ring-wrapper"
+         data-style-name="Double Ring">
+      <h3 class="sample-title">64. Double Ring</h3>
+      <p class="sample-description">ダブルリング</p>
+      <div class="avatar-container">
+        <div class="double-ring-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 65. Soft Gradient -->
+    <div class="sample-card clickable"
+         data-style="soft-gradient-wrapper"
+         data-style-name="Soft Gradient">
+      <h3 class="sample-title">65. Soft Gradient</h3>
+      <p class="sample-description">ソフトグラデーション</p>
+      <div class="avatar-container">
+        <div class="soft-gradient-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 66. Light Trail -->
+    <div class="sample-card clickable"
+         data-style="light-trail-wrapper"
+         data-style-name="Light Trail">
+      <h3 class="sample-title">66. Light Trail</h3>
+      <p class="sample-description">光の軌跡</p>
+      <div class="avatar-container">
+        <div class="light-trail-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 67. Minimal Border -->
+    <div class="sample-card clickable"
+         data-style="minimal-border-wrapper"
+         data-style-name="Minimal Border">
+      <h3 class="sample-title">67. Minimal Border</h3>
+      <p class="sample-description">ミニマルボーダー</p>
+      <div class="avatar-container">
+        <div class="minimal-border-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 68. Shadow Pulse -->
+    <div class="sample-card clickable"
+         data-style="shadow-pulse-wrapper"
+         data-style-name="Shadow Pulse">
+      <h3 class="sample-title">68. Shadow Pulse</h3>
+      <p class="sample-description">シャドウパルス</p>
+      <div class="avatar-container">
+        <div class="shadow-pulse-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 69. Elegant Ring -->
+    <div class="sample-card clickable"
+         data-style="elegant-ring-wrapper"
+         data-style-name="Elegant Ring">
+      <h3 class="sample-title">69. Elegant Ring</h3>
+      <p class="sample-description">エレガントリング</p>
+      <div class="avatar-container">
+        <div class="elegant-ring-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 70. Fade Ring -->
+    <div class="sample-card clickable"
+         data-style="fade-ring-wrapper"
+         data-style-name="Fade Ring">
+      <h3 class="sample-title">70. Fade Ring</h3>
+      <p class="sample-description">フェードリング</p>
+      <div class="avatar-container">
+        <div class="fade-ring-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 71. Simple Glow -->
+    <div class="sample-card clickable"
+         data-style="simple-glow-wrapper"
+         data-style-name="Simple Glow">
+      <h3 class="sample-title">71. Simple Glow</h3>
+      <p class="sample-description">シンプルグロー</p>
+      <div class="avatar-container">
+        <div class="simple-glow-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 72. Triple Shadow -->
+    <div class="sample-card clickable"
+         data-style="triple-shadow-wrapper"
+         data-style-name="Triple Shadow">
+      <h3 class="sample-title">72. Triple Shadow</h3>
+      <p class="sample-description">トリプルシャドウ</p>
+      <div class="avatar-container">
+        <div class="triple-shadow-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 73. Subtle Pulse -->
+    <div class="sample-card clickable"
+         data-style="subtle-pulse-wrapper"
+         data-style-name="Subtle Pulse">
+      <h3 class="sample-title">73. Subtle Pulse</h3>
+      <p class="sample-description">繊細なパルス</p>
+      <div class="avatar-container">
+        <div class="subtle-pulse-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 74. Classic Border -->
+    <div class="sample-card clickable"
+         data-style="classic-border-wrapper"
+         data-style-name="Classic Border">
+      <h3 class="sample-title">74. Classic Border</h3>
+      <p class="sample-description">クラシックボーダー</p>
+      <div class="avatar-container">
+        <div class="classic-border-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 75. Modern Frame -->
+    <div class="sample-card clickable"
+         data-style="modern-frame-wrapper"
+         data-style-name="Modern Frame">
+      <h3 class="sample-title">75. Modern Frame</h3>
+      <p class="sample-description">モダンフレーム</p>
+      <div class="avatar-container">
+        <div class="modern-frame-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 76. Smooth Transition -->
+    <div class="sample-card clickable"
+         data-style="smooth-transition-wrapper"
+         data-style-name="Smooth Transition">
+      <h3 class="sample-title">76. Smooth Transition</h3>
+      <p class="sample-description">スムーストランジション</p>
+      <div class="avatar-container">
+        <div class="smooth-transition-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 77. Clean Shadow -->
+    <div class="sample-card clickable"
+         data-style="clean-shadow-wrapper"
+         data-style-name="Clean Shadow">
+      <h3 class="sample-title">77. Clean Shadow</h3>
+      <p class="sample-description">クリーンシャドウ</p>
+      <div class="avatar-container">
+        <div class="clean-shadow-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 78. Professional -->
+    <div class="sample-card clickable"
+         data-style="professional-wrapper"
+         data-style-name="Professional">
+      <h3 class="sample-title">78. Professional</h3>
+      <p class="sample-description">プロフェッショナル</p>
+      <div class="avatar-container">
+        <div class="professional-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 79. Light Shadow -->
+    <div class="sample-card clickable"
+         data-style="light-shadow-wrapper"
+         data-style-name="Light Shadow">
+      <h3 class="sample-title">79. Light Shadow</h3>
+      <p class="sample-description">ライトシャドウ</p>
+      <div class="avatar-container">
+        <div class="light-shadow-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 80. Deep Shadow -->
+    <div class="sample-card clickable"
+         data-style="deep-shadow-wrapper"
+         data-style-name="Deep Shadow">
+      <h3 class="sample-title">80. Deep Shadow</h3>
+      <p class="sample-description">ディープシャドウ</p>
+      <div class="avatar-container">
+        <div class="deep-shadow-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 81. Subtle Border -->
+    <div class="sample-card clickable"
+         data-style="subtle-border-wrapper"
+         data-style-name="Subtle Border">
+      <h3 class="sample-title">81. Subtle Border</h3>
+      <p class="sample-description">控えめなボーダー</p>
+      <div class="avatar-container">
+        <div class="subtle-border-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 82. Accent Ring -->
+    <div class="sample-card clickable"
+         data-style="accent-ring-wrapper"
+         data-style-name="Accent Ring">
+      <h3 class="sample-title">82. Accent Ring</h3>
+      <p class="sample-description">アクセントリング</p>
+      <div class="avatar-container">
+        <div class="accent-ring-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 83. Delicate Frame -->
+    <div class="sample-card clickable"
+         data-style="delicate-frame-wrapper"
+         data-style-name="Delicate Frame">
+      <h3 class="sample-title">83. Delicate Frame</h3>
+      <p class="sample-description">繊細なフレーム</p>
+      <div class="avatar-container">
+        <div class="delicate-frame-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 84. Bold Border -->
+    <div class="sample-card clickable"
+         data-style="bold-border-wrapper"
+         data-style-name="Bold Border">
+      <h3 class="sample-title">84. Bold Border</h3>
+      <p class="sample-description">ボールドボーダー</p>
+      <div class="avatar-container">
+        <div class="bold-border-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 85. Thin Ring -->
+    <div class="sample-card clickable"
+         data-style="thin-ring-wrapper"
+         data-style-name="Thin Ring">
+      <h3 class="sample-title">85. Thin Ring</h3>
+      <p class="sample-description">細いリング</p>
+      <div class="avatar-container">
+        <div class="thin-ring-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 86. Natural Shadow -->
+    <div class="sample-card clickable"
+         data-style="natural-shadow-wrapper"
+         data-style-name="Natural Shadow">
+      <h3 class="sample-title">86. Natural Shadow</h3>
+      <p class="sample-description">ナチュラルシャドウ</p>
+      <div class="avatar-container">
+        <div class="natural-shadow-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 87. Sharp Frame -->
+    <div class="sample-card clickable"
+         data-style="sharp-frame-wrapper"
+         data-style-name="Sharp Frame">
+      <h3 class="sample-title">87. Sharp Frame</h3>
+      <p class="sample-description">シャープフレーム</p>
+      <div class="avatar-container">
+        <div class="sharp-frame-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 88. Soft Focus -->
+    <div class="sample-card clickable"
+         data-style="soft-focus-wrapper"
+         data-style-name="Soft Focus">
+      <h3 class="sample-title">88. Soft Focus</h3>
+      <p class="sample-description">ソフトフォーカス</p>
+      <div class="avatar-container">
+        <div class="soft-focus-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 89. Premium -->
+    <div class="sample-card clickable"
+         data-style="premium-wrapper"
+         data-style-name="Premium">
+      <h3 class="sample-title">89. Premium</h3>
+      <p class="sample-description">プレミアムスタイル</p>
+      <div class="avatar-container">
+        <div class="premium-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 90. Zen Style -->
+    <div class="sample-card clickable"
+         data-style="zen-style-wrapper"
+         data-style-name="Zen Style">
+      <h3 class="sample-title">90. Zen Style</h3>
+      <p class="sample-description">禅スタイル</p>
+      <div class="avatar-container">
+        <div class="zen-style-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 91. Ultra Minimal -->
+    <div class="sample-card clickable"
+         data-style="ultra-minimal-wrapper"
+         data-style-name="Ultra Minimal">
+      <h3 class="sample-title">91. Ultra Minimal</h3>
+      <p class="sample-description">ウルトラミニマル</p>
+      <div class="avatar-container">
+        <div class="ultra-minimal-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 92. Luxury Frame -->
+    <div class="sample-card clickable"
+         data-style="luxury-frame-wrapper"
+         data-style-name="Luxury Frame">
+      <h3 class="sample-title">92. Luxury Frame</h3>
+      <p class="sample-description">ラグジュアリーフレーム</p>
+      <div class="avatar-container">
+        <div class="luxury-frame-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 93. Artistic -->
+    <div class="sample-card clickable"
+         data-style="artistic-wrapper"
+         data-style-name="Artistic">
+      <h3 class="sample-title">93. Artistic</h3>
+      <p class="sample-description">アーティスティック</p>
+      <div class="avatar-container">
+        <div class="artistic-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 94. Contemporary -->
+    <div class="sample-card clickable"
+         data-style="contemporary-wrapper"
+         data-style-name="Contemporary">
+      <h3 class="sample-title">94. Contemporary</h3>
+      <p class="sample-description">コンテンポラリー</p>
+      <div class="avatar-container">
+        <div class="contemporary-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 95. Vintage -->
+    <div class="sample-card clickable"
+         data-style="vintage-wrapper"
+         data-style-name="Vintage">
+      <h3 class="sample-title">95. Vintage</h3>
+      <p class="sample-description">ヴィンテージ</p>
+      <div class="avatar-container">
+        <div class="vintage-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 96. Futuristic -->
+    <div class="sample-card clickable"
+         data-style="futuristic-wrapper"
+         data-style-name="Futuristic">
+      <h3 class="sample-title">96. Futuristic</h3>
+      <p class="sample-description">フューチャリスティック</p>
+      <div class="avatar-container">
+        <div class="futuristic-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 97. Romantic -->
+    <div class="sample-card clickable"
+         data-style="romantic-wrapper"
+         data-style-name="Romantic">
+      <h3 class="sample-title">97. Romantic</h3>
+      <p class="sample-description">ロマンティック</p>
+      <div class="avatar-container">
+        <div class="romantic-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 98. Industrial -->
+    <div class="sample-card clickable"
+         data-style="industrial-wrapper"
+         data-style-name="Industrial">
+      <h3 class="sample-title">98. Industrial</h3>
+      <p class="sample-description">インダストリアル</p>
+      <div class="avatar-container">
+        <div class="industrial-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 99. Playful -->
+    <div class="sample-card clickable"
+         data-style="playful-wrapper"
+         data-style-name="Playful">
+      <h3 class="sample-title">99. Playful</h3>
+      <p class="sample-description">プレイフル</p>
+      <div class="avatar-container">
+        <div class="playful-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- 100. Ultimate -->
+    <div class="sample-card clickable"
+         data-style="ultimate-wrapper"
+         data-style-name="Ultimate">
+      <h3 class="sample-title">100. Ultimate</h3>
+      <p class="sample-description">究極のデザイン</p>
+      <div class="avatar-container">
+        <div class="ultimate-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/141260319?v=4"
+               alt="Avatar"
+               class="avatar-img">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

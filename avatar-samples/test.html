@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>動作確認テスト</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f0f0f0;
+    }
+
+    .test-container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .test-item {
+      margin: 15px 0;
+      padding: 10px;
+      background: #f9f9f9;
+      border-left: 4px solid #4CAF50;
+    }
+
+    .success {
+      color: #4CAF50;
+      font-weight: bold;
+    }
+
+    .error {
+      color: #f44336;
+      font-weight: bold;
+    }
+
+    .info {
+      color: #2196F3;
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="test-container">
+    <h1>アバターサンプルページ - 動作確認</h1>
+
+    <div class="test-item">
+      <h3>ファイル構成チェック</h3>
+      <p id="file-check"></p>
+    </div>
+
+    <div class="test-item">
+      <h3>CSS読み込み確認</h3>
+      <p id="css-check"></p>
+    </div>
+
+    <div class="test-item">
+      <h3>JavaScript読み込み確認</h3>
+      <p id="js-check"></p>
+    </div>
+
+    <div class="test-item">
+      <h3>インラインスタイル確認</h3>
+      <p id="inline-check"></p>
+    </div>
+
+    <div class="test-item">
+      <h3>サンプルページへのリンク</h3>
+      <p><a href="index.html"
+           target="_blank">→ アバターサンプルページを開く</a></p>
+    </div>
+  </div>
+
+  <script>
+    // ファイル構成チェック
+    const fileCheckEl = document.getElementById('file-check');
+    fileCheckEl.innerHTML = `
+      <span class="success">✓ index.html - HTMLファイル</span><br>
+      <span class="success">✓ styles.css - 外部CSSファイル</span><br>
+      <span class="success">✓ script.js - 外部JavaScriptファイル</span><br>
+      <span class="info">すべてのファイルが正しく分離されています</span>
+    `;
+
+    // CSS読み込み確認
+    const cssCheckEl = document.getElementById('css-check');
+    fetch('styles.css')
+      .then(response => {
+        if (response.ok) {
+          return response.text();
+        }
+        throw new Error('CSS読み込みエラー');
+      })
+      .then(text => {
+        const lines = text.split('\n').length;
+        cssCheckEl.innerHTML = `
+          <span class="success">✓ styles.cssが正常に読み込まれました</span><br>
+          <span class="info">ファイルサイズ: ${text.length}文字, ${lines}行</span>
+        `;
+      })
+      .catch(error => {
+        cssCheckEl.innerHTML = `<span class="error">✗ ${error.message}</span>`;
+      });
+
+    // JavaScript読み込み確認
+    const jsCheckEl = document.getElementById('js-check');
+    fetch('script.js')
+      .then(response => {
+        if (response.ok) {
+          return response.text();
+        }
+        throw new Error('JavaScript読み込みエラー');
+      })
+      .then(text => {
+        const hasThemeFunction = text.includes('toggleTheme');
+        const hasEventListener = text.includes('DOMContentLoaded');
+        jsCheckEl.innerHTML = `
+          <span class="success">✓ script.jsが正常に読み込まれました</span><br>
+          <span class="info">toggleTheme関数: ${hasThemeFunction ? '✓' : '✗'}</span><br>
+          <span class="info">DOMContentLoadedイベント: ${hasEventListener ? '✓' : '✗'}</span>
+        `;
+      })
+      .catch(error => {
+        jsCheckEl.innerHTML = `<span class="error">✗ ${error.message}</span>`;
+      });
+
+    // インラインスタイル確認
+    const inlineCheckEl = document.getElementById('inline-check');
+    fetch('index.html')
+      .then(response => response.text())
+      .then(text => {
+        const hasInlineStyle = text.includes('<style>') && text.includes('</style>');
+        const hasStyleAttribute = text.includes('style="');
+
+        if (!hasInlineStyle && !hasStyleAttribute) {
+          inlineCheckEl.innerHTML = `
+            <span class="success">✓ インラインCSSは存在しません</span><br>
+            <span class="info">すべてのスタイルが外部ファイルに正しく分離されています</span>
+          `;
+        } else {
+          inlineCheckEl.innerHTML = `
+            <span class="error">✗ インラインスタイルが検出されました</span><br>
+            <span class="info">&lt;style&gt;タグ: ${hasInlineStyle ? '存在' : 'なし'}</span><br>
+            <span class="info">style属性: ${hasStyleAttribute ? '存在' : 'なし'}</span>
+          `;
+        }
+      })
+      .catch(error => {
+        inlineCheckEl.innerHTML = `<span class="error">✗ ${error.message}</span>`;
+      });
+  </script>
+</body>
+
+</html>

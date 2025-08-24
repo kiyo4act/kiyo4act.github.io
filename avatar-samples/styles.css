@@ -1,0 +1,2500 @@
+/* 基本スタイル */
+:root {
+  --primary-bg-color: #fcfdfe;
+  --secondary-bg-color: #ffffff;
+  --primary-text-color: #0f172a;
+  --secondary-text-color: #475569;
+  --border-color: #f3f4f6;
+  --accent-purple: #a855f7;
+  --accent-pink: #ec4899;
+  --accent-orange: #f97316;
+  --accent-lime: #84cc16;
+  --gradient-accent: linear-gradient(135deg, #a855f7 0%, #ec4899 25%, #f97316 50%, #eab308 75%, #84cc16 100%);
+  --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-duration: 0.35s;
+}
+
+[data-theme="dark"] {
+  --primary-bg-color: #0d1117;
+  --secondary-bg-color: #161b22;
+  --primary-text-color: #c9d1d9;
+  --secondary-text-color: #8b949e;
+  --border-color: #30363d;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+  padding: 20px;
+  margin: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  color: var(--secondary-text-color);
+  font-size: 1.1em;
+}
+
+/* セクション区切り */
+.section-divider {
+  text-align: center;
+  margin: 30px 0 30px;
+  font-size: 1.3em;
+  font-weight: 600;
+  color: var(--primary-text-color);
+  position: relative;
+  padding: 20px 0;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+}
+
+.section-divider::before {
+  top: 0;
+}
+
+.section-divider::after {
+  bottom: 0;
+}
+
+.samples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sample-card {
+  background: var(--secondary-bg-color);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease;
+}
+
+.sample-card:hover {
+  transform: translateY(-5px);
+}
+
+/* クリック可能なカードのスタイル */
+.sample-card.clickable {
+  cursor: pointer;
+  position: relative;
+}
+
+.sample-card.clickable:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.02), rgba(236, 72, 153, 0.02));
+}
+
+/* アクティブ状態のカード */
+.sample-card.active {
+  border: 2px solid var(--accent-purple);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.05), rgba(236, 72, 153, 0.05));
+  transform: scale(1.02);
+}
+
+.sample-card.active::after {
+  content: '✓';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--accent-purple);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.sample-card.current {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.02) 0%, rgba(236, 72, 153, 0.01) 100%);
+  border-color: rgba(168, 85, 247, 0.2);
+}
+
+.sample-title {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--primary-text-color);
+}
+
+.sample-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7em;
+  font-weight: 600;
+  margin-left: 8px;
+  background: var(--gradient-accent);
+  color: white;
+}
+
+.sample-description {
+  font-size: 0.9em;
+  color: var(--secondary-text-color);
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 180px;
+  margin-bottom: 20px;
+}
+
+/* 共通のアバター画像スタイル */
+.avatar-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* すべてのアバターラッパーに共通のセンタリング設定 */
+[class*="-wrapper"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ホバー時の説明オーバーレイ - 削除済み */
+
+/* プレビューセクションのスティッキー配置 */
+.preview-section {
+  position: sticky;
+  top: 20px;
+  z-index: 100;
+  background: var(--secondary-bg-color);
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-bottom: 30px;
+}
+
+/* モバイル対応 - 画面が狭い場合はスティッキーを解除 */
+@media (max-width: 768px) {
+  .preview-section {
+    position: relative;
+    top: 0;
+  }
+}
+
+.preview-section.pinned {
+  /* 廃止 - 常にスティッキー表示のため不要 */
+  display: none;
+}
+
+.pin-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--secondary-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.pin-button:hover {
+  background: var(--accent-purple);
+  color: white;
+  border-color: var(--accent-purple);
+}
+
+.pin-button.active {
+  background: var(--accent-purple);
+  color: white;
+}
+
+/* === 現在実装済みのスタイル === */
+
+/* 現在のスタイル（ソフトシャドウレイヤー） */
+.soft-shadow-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow:
+    0 1px 2px rgba(168, 85, 247, 0.08),
+    0 2px 4px rgba(236, 72, 153, 0.06),
+    0 4px 8px rgba(168, 85, 247, 0.10),
+    0 8px 16px rgba(236, 72, 153, 0.08),
+    0 16px 32px rgba(249, 115, 22, 0.04),
+    0 24px 48px rgba(132, 204, 22, 0.02);
+  transition: box-shadow var(--transition-duration) var(--transition-smooth);
+}
+
+.soft-shadow-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,
+      rgba(168, 85, 247, 0.15) 0%,
+      rgba(236, 72, 153, 0.15) 50%,
+      rgba(249, 115, 22, 0.10) 100%);
+  opacity: 0.3;
+  z-index: -1;
+  transition: opacity var(--transition-duration) var(--transition-smooth);
+}
+
+.soft-shadow-wrapper:hover::before {
+  opacity: 0.4;
+}
+
+.soft-shadow-wrapper .avatar-img {
+  border: 2px solid var(--border-color);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.06),
+    0 1px 2px rgba(0, 0, 0, 0.08);
+  transition: box-shadow var(--transition-duration) var(--transition-smooth);
+}
+
+.soft-shadow-wrapper:hover .avatar-img {
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.08),
+    0 2px 4px rgba(0, 0, 0, 0.10);
+}
+
+/* === 新しいデザイン提案 === */
+
+/* 1. グラデーションリング */
+.gradient-ring-wrapper {
+  position: relative;
+  padding: 6px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #a855f7, #ec4899, #f97316, #eab308, #84cc16, #a855f7);
+  animation: rotate-gradient 6s linear infinite;
+}
+
+@keyframes rotate-gradient {
+  /* 回転アニメーションを削除 */
+}
+
+.gradient-ring-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  z-index: 1;
+}
+
+.gradient-ring-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+/* 2. グロウエフェクト */
+.glow-effect-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow:
+    0 0 20px rgba(168, 85, 247, 0.5),
+    0 0 40px rgba(236, 72, 153, 0.3),
+    0 0 60px rgba(249, 115, 22, 0.2);
+  animation: soft-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes soft-glow {
+  from {
+    box-shadow:
+      0 0 20px rgba(168, 85, 247, 0.5),
+      0 0 40px rgba(236, 72, 153, 0.3),
+      0 0 60px rgba(249, 115, 22, 0.2);
+  }
+
+  to {
+    box-shadow:
+      0 0 30px rgba(236, 72, 153, 0.6),
+      0 0 50px rgba(168, 85, 247, 0.4),
+      0 0 70px rgba(132, 204, 22, 0.3);
+  }
+}
+
+.glow-effect-wrapper .avatar-img {
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+/* 3. パルスアニメーション */
+.pulse-animation-wrapper {
+  position: relative;
+  padding: 5px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a855f7, #ec4899, #f97316);
+  animation: breathing-pulse 4s ease-in-out infinite;
+}
+
+@keyframes breathing-pulse {
+
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.pulse-animation-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
+  animation: pulse-expand 2s ease-in-out infinite;
+}
+
+@keyframes pulse-expand {
+
+  /* スケールアニメーションを削除、opacity のみ */
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.pulse-animation-wrapper .avatar-img {
+  position: relative;
+  z-index: 1;
+}
+
+/* 4. ガラスモーフィズム */
+.glassmorphism-wrapper {
+  position: relative;
+  padding: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 8px 32px rgba(168, 85, 247, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.glassmorphism-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,
+      rgba(168, 85, 247, 0.3) 0%,
+      rgba(236, 72, 153, 0.2) 50%,
+      transparent 100%);
+  z-index: -1;
+}
+
+.glassmorphism-wrapper .avatar-img {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 5. ネオンボーダー */
+.neon-border-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow:
+    0 0 5px #a855f7,
+    0 0 10px #a855f7,
+    0 0 20px #ec4899,
+    0 0 30px #ec4899,
+    inset 0 0 10px rgba(168, 85, 247, 0.3);
+  animation: neon-flicker 2s ease-in-out infinite alternate;
+}
+
+@keyframes neon-flicker {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 5px #a855f7,
+      0 0 10px #a855f7,
+      0 0 20px #ec4899,
+      0 0 30px #ec4899,
+      inset 0 0 10px rgba(168, 85, 247, 0.3);
+  }
+
+  50% {
+    box-shadow:
+      0 0 10px #ec4899,
+      0 0 20px #ec4899,
+      0 0 30px #f97316,
+      0 0 40px #f97316,
+      inset 0 0 15px rgba(236, 72, 153, 0.4);
+  }
+}
+
+.neon-border-wrapper .avatar-img {
+  border: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+/* 6. 3Dシャドウレイヤー */
+.shadow-3d-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  transform-style: preserve-3d;
+  box-shadow:
+    0 2px 4px rgba(168, 85, 247, 0.15),
+    0 5px 10px rgba(236, 72, 153, 0.12),
+    0 10px 20px rgba(249, 115, 22, 0.10),
+    0 20px 40px rgba(132, 204, 22, 0.08),
+    0 40px 80px rgba(168, 85, 247, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shadow-3d-wrapper:hover {
+  transform: translateY(-5px) rotateX(10deg);
+  box-shadow:
+    0 4px 8px rgba(168, 85, 247, 0.20),
+    0 10px 20px rgba(236, 72, 153, 0.17),
+    0 20px 40px rgba(249, 115, 22, 0.15),
+    0 40px 80px rgba(132, 204, 22, 0.12),
+    0 60px 120px rgba(168, 85, 247, 0.10);
+}
+
+.shadow-3d-wrapper .avatar-img {
+  border: 2px solid var(--border-color);
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 7. ホログラフィック効果 */
+.holographic-wrapper {
+  position: relative;
+  padding: 6px;
+  border-radius: 50%;
+  background: linear-gradient(45deg,
+      #ff0080,
+      #ff8c00,
+      #ffd700,
+      #00ff00,
+      #00ffff,
+      #0080ff,
+      #ff0080);
+  background-size: 300% 300%;
+  animation: holographic-shift 3s linear infinite;
+  filter: brightness(1.2) contrast(1.1);
+}
+
+@keyframes holographic-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.holographic-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  z-index: 1;
+}
+
+.holographic-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.holographic-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+/* 8. 磁場エフェクト */
+.magnetic-field-wrapper {
+  position: relative;
+  padding: 6px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  overflow: hidden;
+}
+
+.magnetic-field-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(from 0deg,
+      transparent,
+      #a855f7,
+      transparent,
+      #ec4899,
+      transparent,
+      #f97316,
+      transparent);
+  animation: magnetic-rotate 3s linear infinite;
+}
+
+@keyframes magnetic-rotate {
+  /* 回転アニメーションを削除 */
+}
+
+.magnetic-field-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+.magnetic-field-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+.magnetic-field-wrapper:hover {
+  animation: magnetic-distort 0.5s ease-in-out;
+}
+
+@keyframes magnetic-distort {
+
+  0%,
+  100% {
+    border-radius: 50%;
+  }
+
+  50% {
+    border-radius: 45% 55% 52% 48% / 48% 52% 48% 52%;
+  }
+}
+
+/* === その他の追加デザイン === */
+
+/* 9. Aurora Pulse */
+.aurora-pulse-wrapper {
+  position: relative;
+  padding: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a855f7, #ec4899, #f97316);
+  background-size: 300% 300%;
+  animation: aurora-pulse 4s ease-in-out infinite;
+}
+
+@keyframes aurora-pulse {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  25% {
+    background-position: 50% 100%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  75% {
+    background-position: 50% 0%;
+  }
+}
+
+.aurora-pulse-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  from {
+    opacity: 0.3;
+  }
+
+  to {
+    opacity: 0.7;
+  }
+}
+
+/* 10. Floating Crystal */
+.crystal-wrapper {
+  position: relative;
+  padding: 15px;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  background: linear-gradient(135deg,
+      rgba(168, 85, 247, 0.3) 0%,
+      rgba(236, 72, 153, 0.3) 33%,
+      rgba(249, 115, 22, 0.3) 66%,
+      rgba(132, 204, 22, 0.3) 100%);
+  animation: crystal-shimmer 4s ease-in-out infinite;
+}
+
+@keyframes crystal-shimmer {
+
+  0%,
+  100% {
+    filter: hue-rotate(0deg) brightness(1);
+  }
+
+  50% {
+    filter: hue-rotate(30deg) brightness(1.2);
+  }
+}
+
+.crystal-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  clip-path: inherit;
+  background: var(--secondary-bg-color);
+  z-index: 1;
+}
+
+.crystal-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+/* 11. Double Shadow Layers */
+.double-shadow-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow:
+    inset 0 0 10px rgba(168, 85, 247, 0.3),
+    inset 0 0 20px rgba(236, 72, 153, 0.2),
+    0 2px 4px rgba(168, 85, 247, 0.1),
+    0 4px 8px rgba(236, 72, 153, 0.08),
+    0 8px 16px rgba(249, 115, 22, 0.06),
+    0 16px 32px rgba(132, 204, 22, 0.04);
+  animation: shadow-dance 4s ease-in-out infinite;
+}
+
+@keyframes shadow-dance {
+
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 10px rgba(168, 85, 247, 0.3),
+      inset 0 0 20px rgba(236, 72, 153, 0.2),
+      0 2px 4px rgba(168, 85, 247, 0.1),
+      0 4px 8px rgba(236, 72, 153, 0.08),
+      0 8px 16px rgba(249, 115, 22, 0.06),
+      0 16px 32px rgba(132, 204, 22, 0.04);
+  }
+
+  50% {
+    box-shadow:
+      inset 0 0 15px rgba(236, 72, 153, 0.4),
+      inset 0 0 25px rgba(168, 85, 247, 0.3),
+      0 4px 8px rgba(236, 72, 153, 0.15),
+      0 8px 16px rgba(168, 85, 247, 0.12),
+      0 16px 32px rgba(132, 204, 22, 0.08),
+      0 32px 64px rgba(249, 115, 22, 0.06);
+  }
+}
+
+/* === 追加デザイン (12-100) === */
+
+/* 12. Ripple Effect */
+.ripple-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  overflow: hidden;
+}
+
+.ripple-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(168, 85, 247, 0.5);
+  animation: ripple-expand 3s linear infinite;
+}
+
+@keyframes ripple-expand {
+
+  /* スケール変換を削除、opacity のみ */
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* 13. Shimmer Border */
+.shimmer-wrapper {
+  position: relative;
+  padding: 5px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #a855f7, #ec4899, #f97316, #a855f7);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  z-index: 1;
+}
+
+.shimmer-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+/* 14. Orbit Dots */
+.orbit-dots-wrapper {
+  position: relative;
+  padding: 15px;
+  border-radius: 50%;
+}
+
+.orbit-dots-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #a855f7;
+  animation: orbit 3s linear infinite;
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(65px) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg) translateX(65px) rotate(-360deg);
+  }
+}
+
+/* 15. Gradient Shift */
+.gradient-shift-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a855f7, #ec4899, #f97316, #84cc16);
+  background-size: 400% 400%;
+  animation: gradient-shift 5s ease infinite;
+}
+
+@keyframes gradient-shift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 16. Pixelated Frame */
+.pixelated-wrapper {
+  position: relative;
+  padding: 6px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg at 50% 50%, #a855f7 0deg, #a855f7 90deg, #ec4899 90deg, #ec4899 180deg, #f97316 180deg, #f97316 270deg, #84cc16 270deg);
+  image-rendering: pixelated;
+}
+
+.pixelated-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  z-index: 1;
+}
+
+.pixelated-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+/* 17. Flame Border */
+.flame-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ff4500, #ff8c00, #ffd700);
+  animation: flame-flicker 1s ease-in-out infinite alternate;
+}
+
+@keyframes flame-flicker {
+
+  /* スケール変換を削除、フィルターのみ残す */
+  0% {
+    filter: brightness(1) contrast(1);
+  }
+
+  100% {
+    filter: brightness(1.2) contrast(1.1);
+  }
+}
+
+/* 18. Electric Arc */
+.electric-arc-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow: 0 0 20px rgba(0, 150, 255, 0.8);
+  animation: electric-pulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes electric-pulse {
+  0% {
+    box-shadow: 0 0 20px rgba(0, 150, 255, 0.8);
+  }
+
+  100% {
+    box-shadow: 0 0 30px rgba(0, 200, 255, 1), 0 0 50px rgba(0, 150, 255, 0.6);
+  }
+}
+
+/* 19. Morphing Shape */
+.morphing-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  animation: morph 4s ease-in-out infinite;
+}
+
+@keyframes morph {
+
+  0%,
+  100% {
+    border-radius: 50%;
+  }
+
+  25% {
+    border-radius: 40% 60% 60% 40% / 40% 60% 40% 60%;
+  }
+
+  50% {
+    border-radius: 60% 40% 40% 60% / 60% 40% 60% 40%;
+  }
+
+  75% {
+    border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
+  }
+}
+
+/* 20. Rainbow Trail */
+.rainbow-trail-wrapper {
+  position: relative;
+  padding: 6px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.rainbow-trail-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(from 0deg, red, orange, yellow, green, blue, indigo, violet, red);
+  animation: rainbow-spin 2s linear infinite;
+}
+
+@keyframes rainbow-spin {
+
+  /* 回転を削除、フィルターのみ残す */
+  from {
+    filter: hue-rotate(0deg);
+  }
+
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+
+.rainbow-trail-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+/* 21. Dotted Pulse */
+.dotted-pulse-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  border: 3px dotted #a855f7;
+  animation: dotted-pulse 2s ease-in-out infinite;
+}
+
+@keyframes dotted-pulse {
+
+  /* スケール変換を削除、opacity のみ残す */
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* 22. Cosmic Dust */
+.cosmic-dust-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow:
+    0 0 2px #fff,
+    0 0 4px #fff,
+    0 0 6px #a855f7,
+    0 0 8px #a855f7,
+    0 0 10px #a855f7;
+  animation: cosmic-sparkle 3s ease-in-out infinite;
+}
+
+@keyframes cosmic-sparkle {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 2px #fff,
+      0 0 4px #fff,
+      0 0 6px #a855f7,
+      0 0 8px #a855f7,
+      0 0 10px #a855f7;
+  }
+
+  50% {
+    box-shadow:
+      0 0 4px #fff,
+      0 0 8px #fff,
+      0 0 12px #ec4899,
+      0 0 16px #ec4899,
+      0 0 20px #ec4899;
+  }
+}
+
+/* 23. Glitch Effect */
+.glitch-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+
+  0%,
+  100% {
+    box-shadow:
+      2px 0 0 #ff0000,
+      -2px 0 0 #00ffff;
+  }
+
+  25% {
+    box-shadow:
+      -2px 0 0 #ff0000,
+      2px 0 0 #00ffff;
+  }
+
+  50% {
+    box-shadow:
+      0 2px 0 #ff0000,
+      0 -2px 0 #00ffff;
+  }
+
+  75% {
+    box-shadow:
+      0 -2px 0 #ff0000,
+      0 2px 0 #00ffff;
+  }
+}
+
+/* 24. Soft Bloom */
+.soft-bloom-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.3), transparent);
+  animation: soft-bloom 3s ease-in-out infinite;
+}
+
+@keyframes soft-bloom {
+
+  /* スケール変換とブラーを削除、opacity のみ残す */
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 25. Hexagon Frame */
+.hexagon-wrapper {
+  position: relative;
+  padding: 15px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+}
+
+.hexagon-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  clip-path: inherit;
+  background: var(--secondary-bg-color);
+  z-index: 1;
+}
+
+.hexagon-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+/* 26-50: Additional simple variations */
+.wave-border-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #a855f7, #ec4899);
+  animation: wave-motion 3s ease-in-out infinite;
+}
+
+@keyframes wave-motion {
+
+  /* スケール変換と回転を削除 */
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.particle-ring-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  background: linear-gradient(45deg, #a855f7, #ec4899) border-box;
+  animation: particle-flow 4s linear infinite;
+}
+
+.laser-scan-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow: 0 0 0 2px #00ff00;
+  animation: laser-scan 2s linear infinite;
+}
+
+@keyframes laser-scan {
+
+  0%,
+  100% {
+    box-shadow: 0 -5px 0 2px #00ff00;
+  }
+
+  50% {
+    box-shadow: 0 5px 0 2px #00ff00;
+  }
+}
+
+.starburst-wrapper {
+  position: relative;
+  padding: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffd700, transparent 70%);
+  animation: starburst-pulse 2s ease-in-out infinite;
+}
+
+.liquid-metal-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c0c0c0, #808080, #c0c0c0);
+  animation: liquid-shine 3s ease-in-out infinite;
+}
+
+.diamond-cut-wrapper {
+  position: relative;
+  padding: 15px;
+  clip-path: polygon(50% 0%, 75% 25%, 100% 50%, 75% 75%, 50% 100%, 25% 75%, 0% 50%, 25% 25%);
+  background: linear-gradient(45deg, #a855f7, #ec4899, #f97316);
+}
+
+.diamond-cut-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  clip-path: inherit;
+  background: var(--secondary-bg-color);
+  z-index: 1;
+}
+
+.diamond-cut-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+.smoke-ring-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: rgba(128, 128, 128, 0.3);
+  animation: smoke-drift 4s ease-in-out infinite;
+}
+
+.cyber-grid-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg at 50% 50%, #00ffff 0deg 10deg, transparent 10deg 20deg);
+  animation: cyber-rotate 10s linear infinite;
+}
+
+.neon-pulse-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  border: 2px solid #ff00ff;
+  box-shadow: 0 0 10px #ff00ff, inset 0 0 10px #ff00ff;
+  animation: neon-pulse-glow 1.5s ease-in-out infinite;
+}
+
+.crystal-prism-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: conic-gradient(from 45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+  animation: prism-rotate 5s linear infinite;
+}
+
+.bubble-float-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(168, 85, 247, 0.3));
+  animation: bubble-float 3s ease-in-out infinite;
+}
+
+@keyframes bubble-float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.frost-glass-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.lightning-strike-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  animation: lightning-flash 3s infinite;
+}
+
+@keyframes lightning-flash {
+
+  0%,
+  95%,
+  100% {
+    box-shadow: 0 0 0 rgba(255, 255, 0, 0);
+  }
+
+  96%,
+  98% {
+    box-shadow: 0 0 20px rgba(255, 255, 0, 1);
+  }
+}
+
+.polygon-shift-wrapper {
+  position: relative;
+  padding: 15px;
+  animation: polygon-morph 4s ease-in-out infinite;
+}
+
+@keyframes polygon-morph {
+
+  0%,
+  100% {
+    clip-path: circle(50%);
+  }
+
+  33% {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+
+  66% {
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  }
+}
+
+.solar-flare-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffd700, #ff8c00, #ff4500);
+  animation: solar-flare 2s ease-in-out infinite;
+}
+
+/* 41-100: Simpler designs with variations */
+.retro-wave-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ff006e, #8338ec, #3a86ff);
+  box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
+}
+
+.chrome-shine-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e8e8e8, #a8a8a8, #e8e8e8);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.spiral-light-wrapper {
+  position: relative;
+  padding: 6px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent, #a855f7, transparent);
+  animation: spiral-rotate 3s linear infinite;
+}
+
+@keyframes spiral-rotate {
+  /* 回転アニメーションを削除 */
+}
+
+.pulse-wave-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7);
+  animation: pulse-wave-expand 2s infinite;
+}
+
+@keyframes pulse-wave-expand {
+  0% {
+    box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7);
+  }
+
+  70% {
+    box-shadow: 0 0 0 20px rgba(168, 85, 247, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(168, 85, 247, 0);
+  }
+}
+
+.matrix-code-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: #000;
+  box-shadow: 0 0 20px #00ff00;
+  border: 2px solid #00ff00;
+}
+
+.gradient-border-wrapper {
+  position: relative;
+  padding: 3px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #a855f7, #ec4899, #f97316, #84cc16);
+}
+
+.gradient-border-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  z-index: 1;
+}
+
+.gradient-border-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+.flickering-light-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  animation: flicker 1s infinite;
+}
+
+@keyframes flicker {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+  }
+}
+
+.dashed-spin-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  border: 3px dashed #a855f7;
+  animation: dashed-rotate 10s linear infinite;
+}
+
+@keyframes dashed-rotate {
+  /* 回転アニメーションを削除 */
+}
+
+.ice-crystal-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e0f7ff, #b3e5fc, #81d4fa);
+  box-shadow: 0 0 20px rgba(129, 212, 250, 0.5);
+}
+
+.gradient-pulse-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  animation: gradient-pulse-effect 2s ease-in-out infinite;
+}
+
+@keyframes gradient-pulse-effect {
+
+  /* スケール変換を削除、filter のみ残す */
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.2);
+  }
+}
+
+/* 51-100: Minimal and elegant variations */
+.soft-shadows-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.08),
+    0 8px 16px rgba(0, 0, 0, 0.06);
+}
+
+.border-fade-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  border: 3px solid rgba(168, 85, 247, 0.5);
+  animation: border-fade-inout 2s ease-in-out infinite;
+}
+
+@keyframes border-fade-inout {
+
+  0%,
+  100% {
+    border-color: rgba(168, 85, 247, 0.5);
+  }
+
+  50% {
+    border-color: rgba(168, 85, 247, 0.1);
+  }
+}
+
+.rainbow-glow-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  animation: rainbow-glow-shift 3s ease-in-out infinite;
+}
+
+@keyframes rainbow-glow-shift {
+  0% {
+    box-shadow: 0 0 20px #ff0000;
+  }
+
+  33% {
+    box-shadow: 0 0 20px #00ff00;
+  }
+
+  66% {
+    box-shadow: 0 0 20px #0000ff;
+  }
+
+  100% {
+    box-shadow: 0 0 20px #ff0000;
+  }
+}
+
+.metallic-ring-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d4af37, #f0e68c, #d4af37);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.prism-effect-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #ff0000, #00ff00, #0000ff, #ff0000);
+  filter: hue-rotate(0deg);
+  animation: prism-hue-rotate 3s linear infinite;
+}
+
+@keyframes prism-hue-rotate {
+  from {
+    filter: hue-rotate(0deg);
+  }
+
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.soft-ring-wrapper {
+  position: relative;
+  padding: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 60%, rgba(168, 85, 247, 0.2));
+}
+
+.wave-pulse-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+}
+
+.wave-pulse-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 2px solid rgba(168, 85, 247, 0.5);
+  animation: wave-pulse-expand 2s ease-out infinite;
+}
+
+@keyframes wave-pulse-expand {
+
+  /* スケール変換を削除、opacity のみ残す */
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.gradient-spin-wrapper {
+  position: relative;
+  padding: 5px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #a855f7, #ec4899, #f97316, #a855f7);
+  animation: gradient-spin-rotate 4s linear infinite;
+}
+
+@keyframes gradient-spin-rotate {
+  /* 回転アニメーションを削除 */
+}
+
+.gradient-spin-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  z-index: 1;
+}
+
+.gradient-spin-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+.glow-ring-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.3);
+}
+
+.neon-circle-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  border: 2px solid #00ffff;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+.breathing-border-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  border: 3px solid #a855f7;
+  animation: breathing-border 3s ease-in-out infinite;
+}
+
+@keyframes breathing-border {
+
+  0%,
+  100% {
+    border-width: 3px;
+  }
+
+  50% {
+    border-width: 5px;
+  }
+}
+
+.color-shift-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  border: 3px solid #a855f7;
+  animation: color-shift-change 4s ease-in-out infinite;
+}
+
+@keyframes color-shift-change {
+  0% {
+    border-color: #a855f7;
+  }
+
+  25% {
+    border-color: #ec4899;
+  }
+
+  50% {
+    border-color: #f97316;
+  }
+
+  75% {
+    border-color: #84cc16;
+  }
+
+  100% {
+    border-color: #a855f7;
+  }
+}
+
+.sparkle-ring-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow:
+    0 0 4px #fff,
+    0 0 8px #a855f7,
+    0 0 12px #ec4899;
+}
+
+.double-ring-wrapper {
+  position: relative;
+  padding: 8px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow:
+    0 0 0 2px #a855f7,
+    0 0 0 4px var(--secondary-bg-color),
+    0 0 0 6px #ec4899;
+}
+
+.soft-gradient-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.2), transparent);
+}
+
+.light-trail-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  overflow: hidden;
+}
+
+.light-trail-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: conic-gradient(from 0deg, transparent 340deg, #a855f7 360deg);
+  animation: light-trail-rotate 2s linear infinite;
+  border-radius: 50%;
+}
+
+@keyframes light-trail-rotate {
+  /* 回転アニメーションを削除 */
+}
+
+
+.light-trail-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+.minimal-border-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.shadow-pulse-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: shadow-pulse-effect 2s ease-in-out infinite;
+}
+
+@keyframes shadow-pulse-effect {
+
+  0%,
+  100% {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.elegant-ring-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.fade-ring-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.3);
+  animation: fade-ring-pulse 2s ease-in-out infinite;
+}
+
+@keyframes fade-ring-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 0 5px rgba(168, 85, 247, 0.1);
+  }
+}
+
+.simple-glow-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+}
+
+.triple-shadow-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow:
+    0 2px 4px rgba(168, 85, 247, 0.2),
+    0 4px 8px rgba(236, 72, 153, 0.15),
+    0 8px 16px rgba(249, 115, 22, 0.1);
+}
+
+.subtle-pulse-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  animation: subtle-pulse-effect 4s ease-in-out infinite;
+}
+
+@keyframes subtle-pulse-effect {
+
+  /* スケール変換を削除、opacity のみ残す */
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.classic-border-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+}
+
+.modern-frame-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.smooth-transition-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.05), rgba(236, 72, 153, 0.05));
+  transition: all 0.3s ease;
+}
+
+.smooth-transition-wrapper:hover {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
+}
+
+.clean-shadow-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.professional-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.light-shadow-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.deep-shadow-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.subtle-border-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.accent-ring-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow: 0 0 0 2px var(--accent-purple);
+}
+
+.delicate-frame-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.02);
+  border: 1px solid rgba(168, 85, 247, 0.1);
+}
+
+.bold-border-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  border: 4px solid var(--accent-purple);
+}
+
+.thin-ring-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.5);
+}
+
+.natural-shadow-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+.sharp-frame-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow: 0 0 0 2px var(--primary-text-color);
+}
+
+.soft-focus-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  filter: drop-shadow(0 4px 8px rgba(168, 85, 247, 0.15));
+}
+
+.premium-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d4af37, #f0e68c);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.premium-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  z-index: 1;
+}
+
+.premium-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+.zen-style-wrapper {
+  position: relative;
+  padding: 8px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ultra-minimal-wrapper {
+  position: relative;
+  padding: 2px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.luxury-frame-wrapper {
+  position: relative;
+  padding: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.luxury-frame-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  z-index: 1;
+}
+
+.luxury-frame-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+.artistic-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24);
+  animation: artistic-shift 5s ease-in-out infinite;
+}
+
+@keyframes artistic-shift {
+
+  0%,
+  100% {
+    filter: hue-rotate(0deg);
+  }
+
+  50% {
+    filter: hue-rotate(180deg);
+  }
+}
+
+.contemporary-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  box-shadow:
+    -5px -5px 10px rgba(255, 255, 255, 0.5),
+    5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.vintage-wrapper {
+  position: relative;
+  padding: 6px;
+  border-radius: 50%;
+  background: #8b7355;
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+  filter: sepia(0.3);
+}
+
+.vintage-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  z-index: 1;
+}
+
+.vintage-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+.futuristic-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  box-shadow:
+    0 0 20px rgba(102, 126, 234, 0.5),
+    inset 0 0 20px rgba(118, 75, 162, 0.5);
+}
+
+.romantic-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff9a9e, #fecfef, #fecfef);
+  box-shadow: 0 4px 12px rgba(255, 154, 158, 0.3);
+}
+
+.industrial-wrapper {
+  position: relative;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #434343, #000000);
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.playful-wrapper {
+  position: relative;
+  padding: 6px;
+  border-radius: 50%;
+  background: linear-gradient(45deg,
+      #ff0080 0%, #ff0080 25%,
+      #00ff00 25%, #00ff00 50%,
+      #00ffff 50%, #00ffff 75%,
+      #ff00ff 75%, #ff00ff 100%);
+  background-size: 20px 20px;
+  animation: playful-move 2s linear infinite;
+}
+
+@keyframes playful-move {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 20px 20px;
+  }
+}
+
+.playful-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  z-index: 1;
+}
+
+.playful-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+}
+
+.ultimate-wrapper {
+  position: relative;
+  padding: 6px;
+  border-radius: 50%;
+  background:
+    linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #fda085 100%);
+  background-size: 400% 400%;
+  animation: ultimate-flow 5s ease infinite;
+  box-shadow:
+    0 4px 15px rgba(102, 126, 234, 0.4),
+    0 8px 25px rgba(118, 75, 162, 0.3),
+    0 12px 35px rgba(240, 147, 251, 0.2);
+}
+
+@keyframes ultimate-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.ultimate-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--secondary-bg-color);
+  z-index: 1;
+}
+
+
+@keyframes ultimate-pulse {
+
+  /* スケール変換を削除、opacity のみ残す */
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.ultimate-wrapper .avatar-img {
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* テーマスイッチャー */
+.theme-switcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--secondary-bg-color);
+  border: 1px solid var(--border-color);
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.theme-switcher:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* レスポンシブ対応 */
+
+/* デスクトップ (1200px以上) - デフォルト */
+@media (min-width: 1200px) {
+  .samples-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+}
+
+/* タブレット横向き (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .samples-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .sample-card {
+    padding: 25px;
+  }
+}
+
+/* タブレット縦向き (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .samples-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .sample-card {
+    padding: 25px;
+  }
+
+  .avatar-container {
+    min-height: 160px;
+  }
+
+  .avatar-img {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+/* 大型スマートフォン (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .samples-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .sample-card {
+    padding: 20px;
+  }
+
+  .sample-title {
+    font-size: 1.1em;
+  }
+
+  .sample-description {
+    font-size: 0.85em;
+  }
+
+  .avatar-container {
+    min-height: 150px;
+  }
+
+  .avatar-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .section-divider {
+    font-size: 1.2em;
+    margin: 40px 0 25px;
+  }
+}
+
+/* スマートフォン (575px以下) */
+@media (max-width: 575px) {
+  body {
+    padding: 15px;
+  }
+
+  .header {
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    font-size: 1.6em;
+  }
+
+  .subtitle {
+    font-size: 1em;
+  }
+
+  .samples-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .sample-card {
+    padding: 20px;
+  }
+
+  .sample-title {
+    font-size: 1.1em;
+  }
+
+  .sample-badge {
+    font-size: 0.65em;
+    padding: 2px 6px;
+  }
+
+  .sample-description {
+    font-size: 0.85em;
+    margin-bottom: 20px;
+  }
+
+  .avatar-container {
+    min-height: 140px;
+  }
+
+  .avatar-img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .section-divider {
+    font-size: 1.1em;
+    margin: 35px 0 20px;
+    padding: 15px 0;
+  }
+
+  /* テーマスイッチャーのモバイル対応 */
+  .theme-switcher {
+    top: 10px;
+    right: 10px;
+    padding: 8px 15px;
+    font-size: 0.9em;
+  }
+}
+
+/* 超小型デバイス (375px以下) */
+@media (max-width: 375px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.4em;
+  }
+
+  .subtitle {
+    font-size: 0.9em;
+  }
+
+  .sample-card {
+    padding: 15px;
+  }
+
+  .sample-title {
+    font-size: 1em;
+  }
+
+  .sample-description {
+    font-size: 0.8em;
+  }
+
+  .avatar-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .avatar-container {
+    min-height: 120px;
+  }
+}
+
+/* アニメーション調整 - モバイルではパフォーマンス重視 */
+@media (max-width: 768px) {
+
+  /* 複雑なアニメーションを簡略化 */
+  .soft-glow-wrapper,
+  .aurora-pulse-wrapper,
+  .holographic-wrapper,
+  .magnetic-field-wrapper,
+  .double-shadow-wrapper {
+    animation: none;
+  }
+
+  /* ホバーエフェクトをタップに最適化 */
+  .sample-card:hover {
+    transform: none;
+  }
+
+  .sample-card:active {
+    transform: scale(0.98);
+  }
+
+  /* 影のサイズを調整 */
+  .soft-shadow-wrapper,
+  .shadow-3d-wrapper,
+  .double-shadow-wrapper {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* パディングの調整 */
+  [class*="-wrapper"] {
+    padding: 3px;
+  }
+}
+
+/* 高解像度ディスプレイ対応 */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  .avatar-img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* プリント対応 */
+@media print {
+  .theme-switcher {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .samples-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sample-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* 横向きモード対応 */
+@media (orientation: landscape) and (max-height: 500px) {
+  .header {
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .samples-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .sample-card {
+    padding: 15px;
+  }
+
+  .avatar-container {
+    min-height: 100px;
+  }
+
+  .avatar-img {
+    width: 60px;
+    height: 60px;
+  }
+}
