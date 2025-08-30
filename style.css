@@ -646,6 +646,8 @@ main section h2::after {
     transform: scaleY(0);
     transform-origin: bottom;
     transition: all 0.3s var(--transition-smooth);
+    pointer-events: none;
+    /* クリックイベントを透過させる */
 }
 
 .tool-item::after {
@@ -657,6 +659,8 @@ main section h2::after {
             transparent 100%);
     opacity: 0;
     transition: opacity 0.25s var(--transition-smooth);
+    pointer-events: none;
+    /* クリックイベントを透過させる */
 }
 
 .tool-item:hover {
@@ -685,19 +689,27 @@ main section h2::after {
     opacity: 1;
 }
 
+/* カード全体のリンクスタイル */
+.tool-item a.tool-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
 .tool-item h3 {
     margin-top: 0;
     margin-bottom: 8px;
     font-size: 1.2em;
-}
-
-.tool-item h3 a {
-    text-decoration: none;
     color: var(--tool-link-color);
     font-weight: 500;
+    transition: color 0.2s ease;
 }
 
-.tool-item h3 a:hover {
+.tool-item:hover h3 {
+    color: var(--accent-purple);
     text-decoration: underline;
 }
 

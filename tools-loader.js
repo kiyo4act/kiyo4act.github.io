@@ -22,17 +22,20 @@ document.addEventListener('DOMContentLoaded', function() {
         tools.forEach(tool => {
             const li = document.createElement('li');
             li.className = 'tool-item';
-            let toolHtml = `<h3><a href="${tool.url}" target="_blank" rel="noopener noreferrer">${tool.name || '名称未設定'}</a></h3>`;
+            // カード全体をリンクにする
+            let toolHtml = `<a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-link">`;
+            toolHtml += `<h3>${tool.name || '名称未設定'}</h3>`;
             if (tool.description) {
                 toolHtml += `<p>${tool.description}</p>`;
             }
             if (tool.lastUpdated) {
                 toolHtml += `<p class="tool-meta">最終更新: ${tool.lastUpdated}</p>`;
             }
+            toolHtml += `</a>`;
             li.innerHTML = toolHtml;
             ul.appendChild(li);
         });
-        
+
         toolsListContainer.innerHTML = ''; // 「読み込み中...」メッセージをクリア
         toolsListContainer.appendChild(ul);
     }
@@ -48,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(data => {
                 if (data && Array.isArray(data)) {
-                    displayTools(data); 
+                    displayTools(data);
                 } else {
                     console.warn('Received data is not a valid array for tools in tools-loader.js. Displaying dummy data instead.', data);
                     toolsListContainer.innerHTML = '<p>ツール情報の形式が正しくありません。ダミーデータを表示します。</p>';
